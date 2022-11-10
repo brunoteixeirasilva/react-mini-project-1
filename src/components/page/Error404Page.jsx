@@ -6,7 +6,7 @@ import React from "react";
  * @returns JSX.Element
  */
 function Error404Page() {
-  return <div>404 Not Found</div>;
+    return <div>404 Not Found</div>;
 }
 
 export { Error404Page };

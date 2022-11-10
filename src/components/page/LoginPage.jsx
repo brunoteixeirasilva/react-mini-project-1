@@ -6,7 +6,7 @@ import React from "react";
  * @returns JSX.Element
  */
 function LoginPage() {
-  return <div>Login Page</div>;
+    return <div>Login Page</div>;
 }
 
 export { LoginPage };

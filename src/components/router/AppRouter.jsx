@@ -11,26 +11,26 @@ import { LoginPage } from "../page/LoginPage";
  * @returns JSX.Element
  */
 function AppRouter({ routePath }) {
-  let componentToRender;
+    let componentToRender;
 
-  switch (routePath) {
-    case "/home":
-      componentToRender = HomePage;
-      break;
-    case "/e404":
-      componentToRender = Error404Page;
-      break;
-    case "/login":
-    default:
-      componentToRender = LoginPage;
-      break;
-  }
+    switch (routePath) {
+        case "/login":
+            componentToRender = LoginPage;
+            break;
+        case "/e404":
+            componentToRender = Error404Page;
+            break;
+        case "/home":
+        default:
+            componentToRender = HomePage;
+            break;
+    }
 
-  return <>{componentToRender()}</>;
+    return <>{componentToRender()}</>;
 }
 
 AppRouter.propTypes = {
-  routePath: PropTypes.string,
+    routePath: PropTypes.string
 };
 
 export { AppRouter };
