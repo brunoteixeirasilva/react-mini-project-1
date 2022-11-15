@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Error404Page } from "../page/Error404Page";
 import { HomePage } from "../page/HomePage";
 import { LoginPage } from "../page/LoginPage";
+import { Routes } from "./Routes";
 
 /**
  * Renders pages based on the passed props.routePath.
@@ -14,13 +15,17 @@ function AppRouter({ routePath }) {
     let componentToRender;
 
     switch (routePath) {
-        case "/login":
+        case Routes.Login:
             componentToRender = LoginPage;
             break;
-        case "/e404":
+        case Routes.Error404:
             componentToRender = Error404Page;
             break;
-        case "/home":
+        // TODO: After the component is ready, allows the route to be navigatable
+        // case Routes.Profile:
+        //     componentToRender = ProfilePage;
+        //     break;
+        case Routes.Home:
         default:
             componentToRender = HomePage;
             break;
