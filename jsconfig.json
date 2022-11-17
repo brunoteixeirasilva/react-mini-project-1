@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ES2015",
+        "baseUrl": "src",
+        "paths": {
+            "components/*": ["components/*"],
+            "services/*": ["services/*"],
+            "storage/*": ["storage/*"],
+            "router/*": ["components/router/*"]
+        }
+    },
+    "include": ["src/**/*"]
+}

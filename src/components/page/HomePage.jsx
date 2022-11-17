@@ -20,8 +20,6 @@ function HomePage() {
         // If my name is an undesirable value, do not set values in the state layer
         if (!name || name === "") return;
 
-        debugger;
-
         // Will call the name Setter within the User sub-service
         service.User.setName(name);
         setTimestamp(new Date().getTime());
