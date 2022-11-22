@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 
-import { MiniContext } from "storage/context";
+import { MiniContext, MiniContextConsumer } from "storage/context";
 import { Routes } from "../router/Routes";
 
 import { useStyles } from "./Header.styles";
@@ -13,19 +13,13 @@ function Header() {
     // const urlPath = document.location.pathname;
     const styles = useStyles();
     const data = useContext(MiniContext);
-
-    useEffect(() => {
-        if (!data) debugger;
-
-        debugger;
-        if (data && data.profile.name === "") {
-            data.setProfile({
-                name: "Lorenzo",
-                mail: "mail@any.com",
-                id: "123"
-            });
-        }
-    }, [data]);
+    const userProfileName = useMemo(
+        () =>
+            !data || !data.profile || !data.profile.name
+                ? "Anon"
+                : data.profile.name,
+        [data]
+    );
 
     return (
         <header style={styles.header}>
@@ -33,15 +27,7 @@ function Header() {
                 <a href={Routes.Home}>Practice React</a>
             </div>
             <nav style={styles.navButtons}>
-                {/* <MiniContext.Consumer>
-                    {({ profile }) => {
-                        return ( */}
-                <span style={styles.navButtonUnit}>
-                    {data.profile?.name ?? "Anonymous"}
-                </span>
-                {/* );
-                    }}
-                </MiniContext.Consumer> */}
+                <span style={styles.navButtonUnit}>{userProfileName}</span>
                 <span style={styles.navButtonUnit}>
                     <button
                         onClick={() => {

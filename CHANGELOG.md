@@ -22,3 +22,13 @@
 -   [WIP][0.5h] Display the data stored in the ContextAPI hook.
 -   [TODO][0.3h] Querying and storing data retrieved from an API.
 -   [TODO][1.0h] Create new page Profile.
+
+### 22/11/2022 - React Review # 10
+
+#### Changes applied
+
+-   [DONE] Created AppLayout component to add another Layout for contextAPI.
+-   [DONE] Worked on modifications on HomePage to display data.
+-   [DONE] Worked on Header logic to display profile.name.
+-   [DONE] Created UserProfile file & class.
+-   [DONE] Modified storage/context/index file to add new functions.
