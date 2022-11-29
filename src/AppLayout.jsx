@@ -1,7 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { AppRouter } from "components/router/AppRouter";
 import { Header } from "components/shared/Header";
-import { MiniContext } from "storage/context/index";
+import { useAppState } from "hooks/useAppState";
+// import { StateService } from "services/StateService";
+// import { MiniContext } from "storage/context/index";
 
 import "./AppLayout.css";
 
@@ -9,27 +11,31 @@ import "./AppLayout.css";
  * Default data-set
  */
 const _lorenzo = {
+    id: "123",
     name: "Lorenzo",
-    mail: "mail@any.com",
-    id: "123"
+    email: "mail@any.com",
+    isAdmin: true
 };
 
 export function AppLayout() {
     const urlPath = document.location.pathname;
-    const data = useContext(MiniContext);
+    const store = useAppState();
 
     // Setting a "fake" user session to the state layer
     useEffect(() => {
-        if (
-            data &&
-            data.profile.name === "" &&
-            data.profile.mail === "" &&
-            data.profile.id === ""
-        ) {
-            debugger;
-            data.setProfile(_lorenzo);
-        }
-    }, [data]);
+        setTimeout(() => {
+            if (
+                store &&
+                store.user.getId() === "" &&
+                store.user.getEmail() === ""
+            ) {
+                store.user.set(_lorenzo);
+                // store.user.setName(_lorenzo.name);
+                // store.user.setEmail(_lorenzo.email);
+                // store.user.setIsAdmin(_lorenzo.isAdmin);
+            }
+        }, 2000);
+    }, [store]);
 
     return (
         <div className="App">

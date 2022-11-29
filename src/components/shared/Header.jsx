@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useMemo } from "react";
 
-import { MiniContext, MiniContextConsumer } from "storage/context";
+// import { MiniContext, MiniContextConsumer } from "storage/context";
 import { Routes } from "../router/Routes";
 
 import { useStyles } from "./Header.styles";
+
+import { useAppState } from "hooks/useAppState";
 
 /**
  * Application Header component.
@@ -12,13 +14,12 @@ import { useStyles } from "./Header.styles";
 function Header() {
     // const urlPath = document.location.pathname;
     const styles = useStyles();
-    const data = useContext(MiniContext);
+    // const data = useContext(MiniContext);
+    const appState = useAppState();
     const userProfileName = useMemo(
         () =>
-            !data || !data.profile || !data.profile.name
-                ? "Anon"
-                : data.profile.name,
-        [data]
+            !appState.user || !appState.user.name ? "Anon" : appState.user.name,
+        [appState.user]
     );
 
     return (
