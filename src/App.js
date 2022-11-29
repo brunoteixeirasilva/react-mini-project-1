@@ -1,13 +1,13 @@
-import "./App.css";
-import { AppRouter } from "./components/router/AppRouter";
+import React from "react";
+
+import { ContextData, MiniContextProvider } from "storage/context";
+import { AppLayout } from "./AppLayout";
 
 function App() {
-    const urlPath = document.location.pathname;
-
     return (
-        <div className="App">
-            <AppRouter routePath={urlPath} />
-        </div>
+        <MiniContextProvider value={ContextData}>
+            <AppLayout />
+        </MiniContextProvider>
     );
 }
 

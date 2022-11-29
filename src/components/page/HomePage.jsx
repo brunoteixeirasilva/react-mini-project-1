@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { StateService } from "../../services/StateService";
+import React, { useMemo, useContext, useState } from "react";
+import { MiniContext, MiniContextConsumer } from "storage/context/index";
+import { StateService } from "services/StateService";
 
 /**
  * Page Component: HomePage
@@ -7,39 +8,51 @@ import { StateService } from "../../services/StateService";
  * @returns JSX.Element
  */
 function HomePage() {
-    const service = new StateService();
+    // const service = new StateService();
     // Reads the user name from the detached state layer
-    const [timestamp, setTimestamp] = useState(new Date().getTime());
+    const timestamp = new Date().getTime();
     // Line below offers functionalities for input to be manipulated and re-populated
-    const [name, setName] = useState("");
+    // Uncomment for local state:
+    // const [name, setName] = useState("");
+    const data = useContext(MiniContext);
+    const name = useMemo(() => data?.profile?.name ?? "", [data]);
+
+    async function setProfileName(event) {
+        data.setProfileName(event.target.value);
+        // setTimestamp(new Date().getTime());
+    }
 
     // Handles the click of the button and manipulates the detached state layer
-    const handleClick = (event) => {
+    const handleClick = async (event) => {
         event.preventDefault();
 
         // If my name is an undesirable value, do not set values in the state layer
         if (!name || name === "") return;
 
-        debugger;
-
         // Will call the name Setter within the User sub-service
-        service.User.setName(name);
-        setTimestamp(new Date().getTime());
+        // service.User.setName(name);
+        data.setProfileName(name);
+        // setTimestamp(new Date().getTime());
     };
 
     return (
         <div>
-            <h3>Home Page. Hello, {service.User.getName()}.</h3>
-            <section>
-                <input
-                    placeholder="Type a name..."
-                    value={name}
-                    onChange={(event) => setName(event.target.value)}
-                />
-                <button onClick={handleClick}>Set Name in State</button>
-                <br />
-                <div>Render Time: {timestamp}</div>
-            </section>
+            {!!data ? (
+                <>
+                    <h3>Home Page. Hello, {name ?? "Anon"}.</h3>
+                    <section>
+                        <input
+                            placeholder="Type a name..."
+                            value={name}
+                            onChange={setProfileName}
+                        />
+                        <br />
+                        <div>Render Time: {timestamp}</div>
+                    </section>
+                </>
+            ) : (
+                "Loading"
+            )}
         </div>
     );
 }
