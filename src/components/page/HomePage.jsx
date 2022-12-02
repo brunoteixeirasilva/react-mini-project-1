@@ -1,4 +1,7 @@
 import React, { useMemo, useContext, useState } from "react";
+import { useSelector } from "react-redux";
+import { store } from "App";
+
 import { MiniContext, MiniContextConsumer } from "storage/context/index";
 import { StateService } from "services/StateService";
 
@@ -14,11 +17,13 @@ function HomePage() {
     // Line below offers functionalities for input to be manipulated and re-populated
     // Uncomment for local state:
     // const [name, setName] = useState("");
-    const data = useContext(MiniContext);
-    const name = useMemo(() => data?.profile?.name ?? "", [data]);
+    const service = new StateService();
+    // const name = service.user.getName(); // Subscriber pattern
+    const name = useSelector((state) => state.userProfile.name); // Selector pattern
+    // const name = useMemo(() => data?.profile?.name ?? "", [service]);
 
     async function setProfileName(event) {
-        data.setProfileName(event.target.value);
+        service.user.setName(event.target.value);
         // setTimestamp(new Date().getTime());
     }
 
@@ -31,13 +36,13 @@ function HomePage() {
 
         // Will call the name Setter within the User sub-service
         // service.User.setName(name);
-        data.setProfileName(name);
+        service.setProfileName(name);
         // setTimestamp(new Date().getTime());
     };
 
     return (
         <div>
-            {!!data ? (
+            {!!name ? (
                 <>
                     <h3>Home Page. Hello, {name ?? "Anon"}.</h3>
                     <section>

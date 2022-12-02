@@ -37,15 +37,20 @@
 
 #### Changes Planned
 
--   [WIP][0.1h] Consume the State Layer in a component via hook
--   [WIP][0.3h] Display the data stored in the app state hook.
--   [TODO][0.3h] Querying and storing data retrieved from an API.
--   [TODO][1.0h] Create new page Profile.
-
-#### Changes Applied
-
 -   [DONE] Removed MiniContextProvider form App.js
 -   [DONE] Modified AppLayout in order to consume new store.
 -   [DONE] Modified Header in order to consume new store.
 -   [DONE] Created useAppState hook.
 -   [DONE] Modified StateService service to use new store.
+
+### 01/12/2022 - React Session # 12
+
+#### Changes Planned
+
+-   [WIP][0.1h] Consume the State Layer in a component via hook
+-   [WIP][0.3h] Display the data stored in the app state hook.
+-   [TODO][0.3h] Redux - Querying and storing data retrieved from an API
+
+### Future Work
+
+-   [TODO][1.0h] Create new page Profile.

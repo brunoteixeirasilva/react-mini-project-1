@@ -1,11 +1,16 @@
 import React from "react";
+import store from "redux/store";
+import { Provider } from "react-redux";
 
-// import { ContextData, MiniContextProvider } from "storage/context";
 import { AppLayout } from "./AppLayout";
 
-// Mode: No ContextAPI below
+// Mode: Using Redux
 function App() {
-    return <AppLayout />;
+    return (
+        <Provider store={store}>
+            <AppLayout />
+        </Provider>
+    );
 }
 
 // Mode: Using the ContextAPI below
@@ -14,5 +19,7 @@ function App() {
 //          <AppLayout />
 //      </MiniContextProvider>;
 // }
+
+export { store };
 
 export default App;

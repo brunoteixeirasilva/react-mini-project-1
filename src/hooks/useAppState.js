@@ -6,7 +6,8 @@ import { StateService } from "services/StateService";
  */
 export function useAppState() {
     const appState = new StateService();
-    const renderTime = new Date().getTime();
+    // const renderTime = new Date().getTime();
 
-    return { _renderTime: renderTime, ...appState };
+    // return { _renderTime: renderTime, ...appState };
+    return appState;
 }

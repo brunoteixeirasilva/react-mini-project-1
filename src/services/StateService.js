@@ -1,50 +1,74 @@
-const _storage = {
-    user: {
-        id: "",
-        name: "Anon",
-        email: "",
-        isAdmin: false
-    }
-};
+import { store } from "App";
+import {
+    setName,
+    setId,
+    setEmail,
+    setIsAdmin
+} from "redux/reducers/userProfileReducer";
 
+/**
+ * Class for managing the access to a State Layer in the app.
+ */
 class StateService {
+    _store = null;
+
+    constructor() {
+        this._store = store;
+    }
+
     user = {
-        get: () => {
-            return _storage.user;
-        },
-        set: function (user) {
-            this.user.setId(user.id);
-            this.user.setEmail(user.email);
-            this.user.setName(user.name);
-            this.user.setIsAdmin(user.isAdmin);
-        },
-        getName: () => {
+        // get: () => {
+        //     // return store.dispatch(.user;
+        // },
+        // set: function (user) {
+        //     this.user.setId(user.id);
+        //     this.user.setEmail(user.email);
+        //     this.user.setName(user.name);
+        //     this.user.setIsAdmin(user.isAdmin);
+        // },
+        getName: function () {
+            if (!this._store) return;
+
             // Reading current state value
-            return _storage.user.name;
+            return this._store.getState().userProfile.name;
         },
-        setName: (newName) => {
-            if (!newName) return;
+        setName: function (newName) {
+            if (!this._store || !newName) return;
 
             // Setting new state value
-            _storage.user.name = newName;
+            this._store.dispatch(setName(newName));
         },
         getId: () => {
-            return _storage.user.id;
+            if (!this._store) return;
+
+            return this._store.getState().userProfile.id;
         },
         setId: (id) => {
-            _storage.user.id = id;
+            if (!this._store) return;
+
+            this._store.dispatch(setId(id));
+
+            debugger;
         },
         getEmail: () => {
-            return _storage.user.email;
+            if (!this._store) return;
+
+            return this._store.getState().userProfile.mail;
         },
         setEmail: (email) => {
-            _storage.user.email = email;
+            if (!this._store) return;
+
+            this._store.dispatch(setEmail(email));
         },
         getIsAdmin: () => {
-            return _storage.user.isAdmin;
+            if (!this._store) return;
+
+            return this._store.getState().userProfile.isAdmin;
         },
         setIsAdmin: (isAdmin) => {
-            _storage.user.isAdmin = isAdmin;
+            if (!this._store) return;
+
+            this._store.dispatch(setIsAdmin(isAdmin));
         }
     };
 }

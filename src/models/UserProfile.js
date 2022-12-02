@@ -5,4 +5,5 @@ export class UserProfile {
     name = "";
     mail = "";
     id = "";
+    isAdmin = false;
 }

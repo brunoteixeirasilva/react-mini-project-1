@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+
 import { AppRouter } from "components/router/AppRouter";
 import { Header } from "components/shared/Header";
 import { useAppState } from "hooks/useAppState";
@@ -19,23 +21,34 @@ const _lorenzo = {
 
 export function AppLayout() {
     const urlPath = document.location.pathname;
-    const store = useAppState();
+    const state = useAppState();
+    const data = useSelector((state) => ({
+        id: state.userProfile.id,
+        mail: state.userProfile.mail
+    }));
 
     // Setting a "fake" user session to the state layer
     useEffect(() => {
-        setTimeout(() => {
-            if (
-                store &&
-                store.user.getId() === "" &&
-                store.user.getEmail() === ""
-            ) {
-                store.user.set(_lorenzo);
-                // store.user.setName(_lorenzo.name);
-                // store.user.setEmail(_lorenzo.email);
-                // store.user.setIsAdmin(_lorenzo.isAdmin);
-            }
-        }, 2000);
-    }, [store]);
+        async function callService() {
+            setTimeout(() => {
+                const id = data.id;
+                const mail = data.mail;
+
+                if (
+                    state &&
+                    (undefined === id || id === "") &&
+                    (undefined === mail || mail === "")
+                ) {
+                    state.user.setId(_lorenzo.id);
+                    // state.user.setName(_lorenzo.name);
+                    // state.user.setEmail(_lorenzo.email);
+                    // state.user.setIsAdmin(_lorenzo.isAdmin);
+                }
+            }, 2000);
+        }
+
+        callService();
+    }, [data, state]);
 
     return (
         <div className="App">
