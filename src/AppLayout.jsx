@@ -21,34 +21,42 @@ const _lorenzo = {
 
 export function AppLayout() {
     const urlPath = document.location.pathname;
-    const state = useAppState();
+    const appState = useAppState();
     const data = useSelector((state) => ({
-        id: state.userProfile.id,
-        mail: state.userProfile.mail
+        id: state?.userProfile?.id,
+        mail: state?.userProfile?.mail
     }));
 
     // Setting a "fake" user session to the state layer
     useEffect(() => {
         async function callService() {
+            appState.setIsLoading(true);
+
             setTimeout(() => {
                 const id = data.id;
                 const mail = data.mail;
 
                 if (
-                    state &&
+                    appState &&
                     (undefined === id || id === "") &&
                     (undefined === mail || mail === "")
                 ) {
-                    state.user.setId(_lorenzo.id);
+                    appState.user.setId(_lorenzo.id);
+                    appState.user.setName(_lorenzo.name);
+                    appState.user.setEmail(_lorenzo.email);
+                    appState.user.setIsAdmin(_lorenzo.isAdmin);
                     // state.user.setName(_lorenzo.name);
                     // state.user.setEmail(_lorenzo.email);
                     // state.user.setIsAdmin(_lorenzo.isAdmin);
                 }
+
+                appState.setIsLoaded(true);
+                appState.setIsLoading(false);
             }, 2000);
         }
 
-        callService();
-    }, [data, state]);
+        if (!appState.isLoaded && !appState.isLoading) callService();
+    }, [data, appState]);
 
     return (
         <div className="App">

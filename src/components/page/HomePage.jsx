@@ -4,6 +4,7 @@ import { store } from "App";
 
 import { MiniContext, MiniContextConsumer } from "storage/context/index";
 import { StateService } from "services/StateService";
+import { useAppState } from "hooks/useAppState";
 
 /**
  * Page Component: HomePage
@@ -17,9 +18,9 @@ function HomePage() {
     // Line below offers functionalities for input to be manipulated and re-populated
     // Uncomment for local state:
     // const [name, setName] = useState("");
-    const service = new StateService();
+    const service = useAppState();
     // const name = service.user.getName(); // Subscriber pattern
-    const name = useSelector((state) => state.userProfile.name); // Selector pattern
+    const name = useSelector((state) => state?.userProfile?.name); // Selector pattern
     // const name = useMemo(() => data?.profile?.name ?? "", [service]);
 
     async function setProfileName(event) {
@@ -36,7 +37,7 @@ function HomePage() {
 
         // Will call the name Setter within the User sub-service
         // service.User.setName(name);
-        service.setProfileName(name);
+        service.user.setName(name);
         // setTimestamp(new Date().getTime());
     };
 

@@ -1,13 +1,15 @@
-import { useMemo } from "react";
+import { store } from "App";
+import { useState } from "react";
 import { StateService } from "services/StateService";
+
+const appState = new StateService(store);
 
 /**
  * Constructs a hook-consumable detached application state.
  */
 export function useAppState() {
-    const appState = new StateService();
-    // const renderTime = new Date().getTime();
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-    // return { _renderTime: renderTime, ...appState };
-    return appState;
+    return { ...appState, isLoading, setIsLoading, isLoaded, setIsLoaded };
 }

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserProfile } from "models/UserProfile";
+import { userProfileInitialState } from "models/UserProfile";
 
 const _sliceName = "userProfile";
 
 export const userProfileSlice = createSlice({
     name: _sliceName,
-    initialState: new UserProfile(),
+    initialState: userProfileInitialState,
     reducers: {
         // set: function (state, action) {
         //     // this.user.setId(user.id);
@@ -15,7 +15,7 @@ export const userProfileSlice = createSlice({
         // },
 
         // [DONE] name = "";
-        setName: (state, action) => {
+        setName(state, action) {
             // console.log(action)
             // action = {
             //    type: string,
@@ -23,12 +23,15 @@ export const userProfileSlice = createSlice({
             // }
 
             // Setting new state value
+            // debugger;
             state.name = action.payload;
             // Similar to old => _storage.user.name = name;
+
+            // return state;
         },
 
         // [DONE] id = "";
-        setId: (state, action) => {
+        setId(state, action) {
             // console.log(action)
             // action = {
             //    type: string,
@@ -36,10 +39,12 @@ export const userProfileSlice = createSlice({
             // }
             state.id = action.payload;
             // Similar to old => _storage.user.id = id;
+
+            // return state;
         },
 
         // [DONE] mail = "";
-        setEmail: (state, action) => {
+        setEmail(state, action) {
             // console.log(action)
             // action = {
             //    type: string,
@@ -47,10 +52,12 @@ export const userProfileSlice = createSlice({
             // }
             state.mail = action.payload;
             // Similar to old => _storage.user.email = email;
+
+            // return state;
         },
 
         // [DONE] isAdmin = false;
-        setIsAdmin: (state, action) => {
+        setIsAdmin(state, action) {
             // console.log(action)
             // action = {
             //    type: string,
@@ -58,6 +65,8 @@ export const userProfileSlice = createSlice({
             // }
             state.isAdmin = action.payload;
             //_storage.user.isAdmin = isAdmin;
+
+            // return state;
         }
     }
 });

@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 
 // import { MiniContext, MiniContextConsumer } from "storage/context";
 import { Routes } from "../router/Routes";
 
 import { useStyles } from "./Header.styles";
 
-import { useAppState } from "hooks/useAppState";
+// import { useAppState } from "hooks/useAppState";
 
 /**
  * Application Header component.
@@ -15,12 +16,10 @@ function Header() {
     // const urlPath = document.location.pathname;
     const styles = useStyles();
     // const data = useContext(MiniContext);
-    const appState = useAppState();
-    const userProfileName = useMemo(
-        () =>
-            !appState.user || !appState.user.name ? "Anon" : appState.user.name,
-        [appState.user]
-    );
+    // const appState = useAppState();
+    const userProfileName = useSelector((state) => {
+        return state?.userProfile?.name ?? "Anon";
+    });
 
     return (
         <header style={styles.header}>

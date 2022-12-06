@@ -51,6 +51,23 @@
 -   [WIP][0.3h] Display the data stored in the app state hook.
 -   [TODO][0.3h] Redux - Querying and storing data retrieved from an API
 
+#### Changes Applied
+
+-   [DONE] Created AppLayout component to add another Layout for contextAPI.
+-   [DONE] Worked on modifications on HomePage to display data.
+-   [DONE] Modified UserProfile file to store "isAdmin".
+-   [DONE] Created UserProfileReducer file.
+-   [DONE] Created rootReducer file.
+-   [DONE] Created store file.
+-   [DONE] Modified StateService file to support new store.
+
+### 06/12/2022 - React Session # 13
+
+### Changes Planned
+
+-   [WIP][0.3h] Redux - Querying and storing fake user data - Fix any sync-up errors
+-   [TODO][0.5h] Redux - Querying and storing data retrieved from an API
+
 ### Future Work
 
 -   [TODO][1.0h] Create new page Profile.
