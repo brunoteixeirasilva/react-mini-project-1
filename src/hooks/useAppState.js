@@ -1,8 +1,5 @@
-import { store } from "App";
 import { useState } from "react";
-import { StateService } from "services/StateService";
-
-const appState = new StateService(store);
+import { appState } from "App";
 
 /**
  * Constructs a hook-consumable detached application state.

@@ -1,10 +1,16 @@
 import React from "react";
 import store from "redux/store";
 import { Provider } from "react-redux";
+import { StateService } from "services/StateService";
 
-import { AppLayout } from "./AppLayout";
+const appState = new StateService(store);
 
-// Mode: Using Redux
+const AppLayout = require("./AppLayout").AppLayout;
+
+/**
+ * Application main (entry) point.
+ * Mode: Using Redux
+ */
 function App() {
     return (
         <Provider store={store}>
@@ -20,6 +26,6 @@ function App() {
 //      </MiniContextProvider>;
 // }
 
-export { store };
+export { store, appState };
 
 export default App;

@@ -28,7 +28,7 @@ class UserService {
         if (!this._store) return;
 
         // Reading current state value
-        return this._store.getState().userProfile.name;
+        return this._store.getState().reducer.name;
     }
     async setName(newName) {
         if (!this._store || !newName) return;
@@ -39,7 +39,8 @@ class UserService {
     async getId() {
         if (!this._store) return;
 
-        return this._store.getState().userProfile.id;
+        // debugger;
+        return this._store.getState().reducer.id;
     }
     async setId(id) {
         if (!this._store) return;
@@ -49,7 +50,7 @@ class UserService {
     async getEmail() {
         if (!this._store) return;
 
-        return this._store.getState().userProfile.mail;
+        return this._store.getState().reducer.mail;
     }
     async setEmail(email) {
         if (!this._store) return;
@@ -59,7 +60,7 @@ class UserService {
     async getIsAdmin() {
         if (!this._store) return;
 
-        return this._store.getState().userProfile.isAdmin;
+        return this._store.getState().reducer.isAdmin;
     }
     async setIsAdmin(isAdmin) {
         if (!this._store) return;
