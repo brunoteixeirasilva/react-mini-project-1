@@ -23,7 +23,9 @@ function HomePage() {
     const name = useSelector((state) => state?.userProfile?.name); // Selector pattern
     // const name = useMemo(() => data?.profile?.name ?? "", [service]);
 
-    async function setProfileName(event) {
+    function setProfileName(event) {
+        event.preventDefault();
+
         service.user.setName(event.target.value);
         // setTimestamp(new Date().getTime());
     }

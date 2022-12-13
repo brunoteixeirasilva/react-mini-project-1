@@ -1,3 +1,4 @@
+import { AuthService } from "./AuthService";
 import { UserService } from "./UserService";
 
 /**
@@ -5,11 +6,13 @@ import { UserService } from "./UserService";
  */
 class StateService {
     _store = null;
+    auth = null;
     user = null;
 
     constructor(reduxStore) {
         this._store = reduxStore;
-        this.user = new UserService(this._store);
+        this.auth = new AuthService(reduxStore);
+        this.user = new UserService(reduxStore);
     }
 }
 

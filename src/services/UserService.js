@@ -24,11 +24,11 @@ class UserService {
     //     this.user.setName(user.name);
     //     this.user.setIsAdmin(user.isAdmin);
     // }
-    async getName() {
+    getName() {
         if (!this._store) return;
 
         // Reading current state value
-        return this._store.getState().reducer.name;
+        return this._store.getState().userProfile.name;
     }
     async setName(newName) {
         if (!this._store || !newName) return;
@@ -36,31 +36,31 @@ class UserService {
         // Setting new state value
         this._store.dispatch(setName(newName));
     }
-    async getId() {
+    getId() {
         if (!this._store) return;
 
         // debugger;
-        return this._store.getState().reducer.id;
+        return this._store.getState().userProfile.id;
     }
     async setId(id) {
         if (!this._store) return;
 
         this._store.dispatch(setId(id));
     }
-    async getEmail() {
+    getEmail() {
         if (!this._store) return;
 
-        return this._store.getState().reducer.mail;
+        return this._store.getState().userProfile.mail;
     }
     async setEmail(email) {
         if (!this._store) return;
 
         this._store.dispatch(setEmail(email));
     }
-    async getIsAdmin() {
+    getIsAdmin() {
         if (!this._store) return;
 
-        return this._store.getState().reducer.isAdmin;
+        return this._store.getState().userProfile.isAdmin;
     }
     async setIsAdmin(isAdmin) {
         if (!this._store) return;

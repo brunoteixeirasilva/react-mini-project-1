@@ -65,9 +65,18 @@
 
 ### Changes Planned
 
--   [WIP][0.3h] Redux - Querying and storing fake user data - Fix any sync-up errors
+-   [DONE][0.3h] Redux - Querying and storing fake user data - Fix any sync-up errors
 -   [TODO][0.5h] Redux - Querying and storing data retrieved from an API
 
 ### Future Work
 
 -   [TODO][1.0h] Create new page Profile.
+
+### 13/12/2022 - React Session # 13
+
+#### Changes Applied
+
+-   [DONE] Created AppAuthentication component to wrap App component and verify authentication before rendering it.
+-   [DONE] Removed all the auth logic from AppLayout component.
+-   [DONE] Created AuthService file.
+-   [DONE] Removed async from get functions in UserService.

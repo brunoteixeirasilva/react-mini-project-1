@@ -4,8 +4,8 @@ import userProfileReducer from "./userProfileReducer";
  * Base structure of our Storage ecosystem.
  */
 const RootReducer = {
-    [userProfileReducer.name]: userProfileReducer,
+    userProfile: userProfileReducer,
     someOtherReducer: null
 };
 
-export default RootReducer;
+export { RootReducer };

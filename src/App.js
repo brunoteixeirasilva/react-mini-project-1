@@ -2,10 +2,12 @@ import React from "react";
 import store from "redux/store";
 import { Provider } from "react-redux";
 import { StateService } from "services/StateService";
+import { AppAuthentication } from "components/shared/layer/AppAuthentication";
+import { AppLayout } from "AppLayout";
 
 const appState = new StateService(store);
 
-const AppLayout = require("./AppLayout").AppLayout;
+// const AppLayout = require("./AppLayout").AppLayout;
 
 /**
  * Application main (entry) point.
@@ -14,7 +16,9 @@ const AppLayout = require("./AppLayout").AppLayout;
 function App() {
     return (
         <Provider store={store}>
-            <AppLayout />
+            <AppAuthentication>
+                <AppLayout />
+            </AppAuthentication>
         </Provider>
     );
 }

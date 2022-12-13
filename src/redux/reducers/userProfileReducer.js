@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userProfileInitialState } from "models/UserProfile";
+import { userProfileInitialState as initialState } from "models/UserProfile";
 
 const _sliceName = "userProfile";
 
 export const userProfileSlice = createSlice({
     name: _sliceName,
-    initialState: userProfileInitialState,
+    initialState,
     reducers: {
         // set: function (state, action) {
         //     // this.user.setId(user.id);
@@ -23,7 +23,7 @@ export const userProfileSlice = createSlice({
             // }
 
             // Setting new state value
-            // debugger;
+            debugger;
             state.name = action.payload;
             // Similar to old => _storage.user.name = name;
 
