@@ -13,14 +13,14 @@ const appState = new StateService(store);
  * Application main (entry) point.
  * Mode: Using Redux
  */
-function App() {
-    return (
-        <Provider store={store}>
-            <AppAuthentication>
-                <AppLayout />
-            </AppAuthentication>
-        </Provider>
-    );
+function App(): JSX.Element {
+	return (
+		<Provider store={store}>
+			<AppAuthentication>
+				<AppLayout />
+			</AppAuthentication>
+		</Provider>
+	);
 }
 
 // Mode: Using the ContextAPI below
