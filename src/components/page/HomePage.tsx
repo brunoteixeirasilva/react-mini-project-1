@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { store } from "App";
 
 import { MiniContext, MiniContextConsumer } from "storage/context/index";
-import { StateService } from "services/StateService";
 import { useAppState } from "hooks/useAppState";
 
 import { Selectors } from "redux/selectors/userProfileSelectors";
@@ -45,6 +44,12 @@ function HomePage(): JSX.Element {
 		// setTimestamp(new Date().getTime());
 	};
 
+	async function onCallService() {
+		const response = await service.boredAPI.get();
+
+		alert("Service has replied with: " + response);
+	}
+
 	return (
 		<div>
 			{!!name ? (
@@ -58,6 +63,9 @@ function HomePage(): JSX.Element {
 						/>
 						<br />
 						<div>Render Time: {timestamp}</div>
+						<button onClick={onCallService}>
+							Call external service
+						</button>
 					</section>
 				</>
 			) : (

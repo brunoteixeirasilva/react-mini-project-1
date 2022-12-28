@@ -63,16 +63,12 @@
 
 ### 06/12/2022 - React Session # 13
 
-### Changes Planned
+### Changes Applied
 
 -   [DONE][0.3h] Redux - Querying and storing fake user data - Fix any sync-up errors
 -   [TODO][0.5h] Redux - Querying and storing data retrieved from an API
 
-### Future Work
-
--   [TODO][1.0h] Create new page Profile.
-
-### 13/12/2022 - React Session # 13
+### 13/12/2022 - React Session # 14
 
 #### Changes Applied
 
@@ -80,3 +76,21 @@
 -   [DONE] Removed all the auth logic from AppLayout component.
 -   [DONE] Created AuthService file.
 -   [DONE] Removed async from get functions in UserService.
+
+### 28/12/2022 - React Session # 15
+
+#### Changes Applied
+
+-   [DONE][0.3h] Comprehend, discuss and map necessary contract details.
+-   [DONE][0.3h] Created interfaces necessary to shape the state/api/service objects by means of contracts
+    -   IUserProfile.
+    -   IBoredAPIService.
+    -   IBoredAPIActivities.
+    -   IBoredActivity.
+-   [DONE][0.1h] Updated the User Profile reducers to include dispatch Payload types.
+-   [DONE][0.3h] Created BoredAPI service class to consume the third-party service.
+-   [DONE][0.1h] Created a function to call the created service on Homepage by means of a button (untested)
+
+### Future Work
+
+-   [TODO][1.0h] Create new page Profile.

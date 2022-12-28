@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { userProfileInitialState as initialState } from "models/UserProfile";
 
 const _sliceName = "userProfile";
@@ -15,7 +15,7 @@ export const userProfileSlice = createSlice({
 		// },
 
 		// [DONE] name = "";
-		setName(state, action): void {
+		setName(state, action: PayloadAction<string>): void {
 			// console.log(action)
 			// action = {
 			//    type: string,
@@ -31,7 +31,7 @@ export const userProfileSlice = createSlice({
 		},
 
 		// [DONE] id = "";
-		setId(state, action): void {
+		setId(state, action: PayloadAction<string>): void {
 			// console.log(action)
 			// action = {
 			//    type: string,
@@ -44,7 +44,7 @@ export const userProfileSlice = createSlice({
 		},
 
 		// [DONE] mail = "";
-		setEmail(state, action): void {
+		setEmail(state, action: PayloadAction<string>): void {
 			// console.log(action)
 			// action = {
 			//    type: string,
@@ -57,7 +57,7 @@ export const userProfileSlice = createSlice({
 		},
 
 		// [DONE] isAdmin = false;
-		setIsAdmin(state, action): void {
+		setIsAdmin(state, action: PayloadAction<boolean>): void {
 			// console.log(action)
 			// action = {
 			//    type: string,

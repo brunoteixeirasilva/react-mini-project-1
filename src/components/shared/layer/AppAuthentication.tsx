@@ -22,10 +22,9 @@ function AppAuthentication({
 	const st = useAppState();
 	const id = useSelector(Selectors.selectUserProfileId);
 	const name = useSelector(Selectors.selectUserProfileName);
-	const isAuthenticated = st && !!id && !!name;
-
+	const isAuthenticated = !!st && !!id && !!name;
+	debugger;
 	if (!isAuthenticated) {
-		debugger;
 		st.auth.login(
 			st.isLoading,
 			st.isLoaded,

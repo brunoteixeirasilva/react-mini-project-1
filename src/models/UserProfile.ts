@@ -1,7 +1,14 @@
+interface IUserProfile {
+	name: string;
+	mail: string;
+	id: string;
+	isAdmin: boolean;
+}
+
 /**
  * User profile factory class.
  */
-export class UserProfile {
+export class UserProfile implements IUserProfile {
 	name = null;
 	mail = null;
 	id = null;
@@ -15,6 +22,6 @@ export class UserProfile {
 	}
 }
 
-const userProfileInitialState: UserProfile = new UserProfile();
+const userProfileInitialState: IUserProfile = new UserProfile();
 
 export { userProfileInitialState };
