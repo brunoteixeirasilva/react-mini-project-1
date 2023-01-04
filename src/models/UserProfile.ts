@@ -3,22 +3,28 @@ interface IUserProfile {
 	mail: string;
 	id: string;
 	isAdmin: boolean;
+	authenticating: boolean;
+	authenticated: boolean;
 }
 
 /**
  * User profile factory class.
  */
 export class UserProfile implements IUserProfile {
-	name = null;
-	mail = null;
-	id = null;
-	isAdmin = false;
+	name: string;
+	mail: string;
+	id: string;
+	isAdmin: boolean;
+	authenticating: boolean;
+	authenticated: boolean;
 
 	constructor() {
-		this.name = "";
-		this.mail = "";
-		this.id = "";
+		this.name = null;
+		this.mail = null;
+		this.id = null;
 		this.isAdmin = false;
+		this.authenticating = false;
+		this.authenticated = false;
 	}
 }
 

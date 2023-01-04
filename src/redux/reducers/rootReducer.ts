@@ -6,15 +6,15 @@ import { combineReducers } from "@reduxjs/toolkit";
 // /**
 //  * Contract for the Application State tree.
 //  */
-// interface IRootState {
-// 	userProfile: UserProfile;
-// 	// someOtherReducer: any;
-// }
+interface IRootState {
+	userProfile: UserProfile;
+	// someOtherReducer: any;
+}
 
 /**
  * Base structure of our Storage ecosystem.
  */
-const RootReducer = combineReducers({
+const RootReducer = combineReducers<IRootState>({
 	userProfile: userProfileReducer
 });
 

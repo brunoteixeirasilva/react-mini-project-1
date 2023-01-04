@@ -23,7 +23,6 @@ export const userProfileSlice = createSlice({
 			// }
 
 			// Setting new state value
-			debugger;
 			state.name = action.payload;
 			// Similar to old => _storage.user.name = name;
 
@@ -67,14 +66,28 @@ export const userProfileSlice = createSlice({
 			//_storage.user.isAdmin = isAdmin;
 
 			// return state;
+		},
+
+		setAuthenticating(state, action: PayloadAction<boolean>): void {
+			state.authenticating = action.payload;
+		},
+
+		setAuthenticated(state, action: PayloadAction<boolean>): void {
+			state.authenticated = action.payload;
 		}
 	}
 });
 
 export const { actions, reducer } = userProfileSlice;
 
-export const { setName, setId, setEmail, setIsAdmin } =
-	userProfileSlice.actions;
+export const {
+	setName,
+	setId,
+	setEmail,
+	setIsAdmin,
+	setAuthenticating,
+	setAuthenticated
+} = userProfileSlice.actions;
 
 export default reducer;
 

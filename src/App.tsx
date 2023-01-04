@@ -5,7 +5,7 @@ import { StateService } from "services/StateService";
 import { AppAuthentication } from "components/shared/layer/AppAuthentication";
 import { AppLayout } from "AppLayout";
 
-const appState = new StateService(store);
+const appStateService = new StateService(store);
 
 // const AppLayout = require("./AppLayout").AppLayout;
 
@@ -30,6 +30,6 @@ function App(): JSX.Element {
 //      </MiniContextProvider>;
 // }
 
-export { store, appState };
+export { store, appStateService };
 
 export default App;

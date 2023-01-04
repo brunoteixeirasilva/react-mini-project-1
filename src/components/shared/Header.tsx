@@ -17,7 +17,7 @@ function Header(): JSX.Element {
 	// const urlPath = document.location.pathname;
 	const styles = useStyles();
 	// const data = useContext(MiniContext);
-	// const appState = useAppState();
+	// const appStateService = useAppState();
 	const userProfileName = useSelector(
 		Selectors.selectUserProfileNameWithAnon
 	);

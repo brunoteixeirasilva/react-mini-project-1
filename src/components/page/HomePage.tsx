@@ -45,7 +45,7 @@ function HomePage(): JSX.Element {
 	};
 
 	async function onCallService() {
-		const response = await service.boredAPI.get();
+		const response = await service.boredAPI.activities.get();
 
 		alert("Service has replied with: " + response);
 	}

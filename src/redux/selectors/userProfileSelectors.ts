@@ -14,6 +14,8 @@ interface ISelectors {
 	selectUserProfileName: (state: RootState) => string;
 	selectUserProfileNameWithAnon: (state: RootState) => string;
 	selectUserProfileId: (state: RootState) => string;
+	selectAuthenticating: (state: RootState) => boolean;
+	selectAuthenticated: (state: RootState) => boolean;
 }
 
 // 2. Define the functionalities that implement necessary logic to achieve contract definitions
@@ -54,6 +56,24 @@ function selectUserProfileId(state: RootState): string {
 	return state.userProfile.id;
 }
 
+/**
+ * Selects the UserProfile is authenticating flag from the app state tree.
+ *
+ * @param state The application root state, as per definition
+ */
+function selectAuthenticating(state: RootState): boolean {
+	return state.userProfile.authenticating;
+}
+
+/**
+ * Selects the UserProfile is authenticating flag from the app state tree.
+ *
+ * @param state The application root state, as per definition
+ */
+function selectAuthenticated(state: RootState): boolean {
+	return state.userProfile.authenticated;
+}
+
 // 3. Create the object which groups the selectors usable for picking data from UserProfile slice.
 
 /**
@@ -63,7 +83,9 @@ const Selectors: ISelectors = {
 	selectUserProfile,
 	selectUserProfileName,
 	selectUserProfileNameWithAnon,
-	selectUserProfileId
+	selectUserProfileId,
+	selectAuthenticating,
+	selectAuthenticated
 };
 
 export { Selectors };

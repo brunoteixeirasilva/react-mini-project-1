@@ -14,10 +14,10 @@ interface IStateServices {
  * Class for managing the access to a State Layer in the app.
  */
 class StateService implements IStateServices {
-	_store = null;
-	auth = null;
-	user = null;
-	boredAPI = null;
+	_store: RootState;
+	auth: AuthService;
+	user: UserService;
+	boredAPI: IBoredAPIService;
 
 	constructor(reduxStore) {
 		this._store = reduxStore;
