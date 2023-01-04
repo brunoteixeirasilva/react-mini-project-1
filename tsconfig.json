@@ -1,14 +1,19 @@
 {
     "compilerOptions": {
-        "module": "ESNext",
-        "target": "ES2015",
+        "module": "esnext",
+        "target": "esnext",
         "baseUrl": "src",
+        "jsx": "react",
         "paths": {
             "components/*": ["components/*"],
             "services/*": ["services/*"],
             "storage/*": ["storage/*"],
             "router/*": ["components/router/*"]
-        }
+        },
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node"
     },
     "include": ["src/**/*"]
 }
