@@ -39,8 +39,6 @@ class BoredAPIService implements IBoredAPIService {
 					return response.json();
 				});
 
-				debugger;
-
 				return result;
 			}
 		};

@@ -1,5 +1,5 @@
-import { appStateService } from "App";
-import { setAuthenticated, setAuthenticating } from "redux/reducers";
+import { appStateService, StoreType } from "App";
+import { actions } from "redux/reducers/userProfileReducer";
 import { Selectors } from "redux/selectors/userProfileSelectors";
 
 /**
@@ -13,13 +13,13 @@ const _lorenzo = {
 };
 
 class AuthService {
-	_store = null;
+	_store: StoreType = null;
 
-	constructor(reduxStore) {
+	constructor(reduxStore: StoreType) {
 		this._store = reduxStore;
 	}
 
-	async login(onLoading: () => void, onLoaded: () => void) {
+	login(onLoading: () => Promise<void>, onLoaded: () => Promise<void>) {
 		// Only authenticated once, since there are control flags now
 		// If the process is loading (started), won't enter the if.
 		// Or if the process is loaded (concluded), won't enter the if.
@@ -29,24 +29,29 @@ class AuthService {
 			debugger;
 		}
 
-		if (typeof onLoading === "function") onLoading();
+		if (typeof onLoading === "function") Promise.resolve(onLoading());
 
+		// not async
 		appStateService.user.setId(_lorenzo.id);
+
+		// not async
 		appStateService.user.setName(_lorenzo.name);
+
+		// not async
 		appStateService.user.setEmail(_lorenzo.email);
+
+		// not async
 		appStateService.user.setIsAdmin(_lorenzo.isAdmin);
 
-		debugger;
-
-		if (typeof onLoaded === "function") onLoaded();
+		if (typeof onLoaded === "function") Promise.resolve(onLoaded());
 	}
 
-	async setAuthenticating(authenticating: boolean) {
-		await this._store.dispatch(setAuthenticating(authenticating));
+	setAuthenticating(authenticating: boolean) {
+		this._store.dispatch(actions.setAuthenticating(authenticating));
 	}
 
-	async setAuthenticated(authenticated: boolean) {
-		await this._store.dispatch(setAuthenticated(authenticated));
+	setAuthenticated(authenticated: boolean) {
+		this._store.dispatch(actions.setAuthenticated(authenticated));
 	}
 }
 

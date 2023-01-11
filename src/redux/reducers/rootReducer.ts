@@ -1,5 +1,5 @@
 import userProfileReducer from "./userProfileReducer";
-import { UserProfile } from "models";
+import { IUserProfile } from "models";
 import { combineReducers } from "@reduxjs/toolkit";
 
 // TODO: Implement the "skeleton"
@@ -7,7 +7,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 //  * Contract for the Application State tree.
 //  */
 interface IRootState {
-	userProfile: UserProfile;
+	userProfile: IUserProfile;
 	// someOtherReducer: any;
 }
 
@@ -23,4 +23,4 @@ const RootReducer = combineReducers<IRootState>({
  */
 export type RootState = ReturnType<typeof RootReducer>;
 
-export { RootReducer };
+export { RootReducer, IRootState };

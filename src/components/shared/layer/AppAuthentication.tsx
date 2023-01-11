@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { useAppState } from "hooks/useAppState";
-
+import { appStateService } from "App";
 import { Selectors } from "redux/selectors/userProfileSelectors";
 
 /**
@@ -19,7 +18,7 @@ function AppAuthentication({
 	children,
 	...otherProps
 }: IAppAuthenticationProps): JSX.Element {
-	const st = useAppState();
+	const st = appStateService;
 	const authenticating = useSelector(Selectors.selectAuthenticating);
 	const authenticated = useSelector(Selectors.selectAuthenticated);
 	// const isAuthenticated = !!st && !authenticating && !!authenticated;
@@ -27,14 +26,13 @@ function AppAuthentication({
 	if (!authenticating && !authenticated) {
 		console.log("Not authenticated");
 		st.auth.login(
-			() => {
-				st.auth.setAuthenticating(true);
+			async () => {
 				console.log("Authentication started");
+				st.auth.setAuthenticating(true);
 			},
-			() => {
-				st.auth.setAuthenticated(true);
-				st.auth.setAuthenticating(false);
+			async () => {
 				console.log("Authentication completed");
+				st.auth.setAuthenticated(true);
 			}
 		);
 	}

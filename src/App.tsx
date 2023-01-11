@@ -4,6 +4,18 @@ import { Provider } from "react-redux";
 import { StateService } from "services/StateService";
 import { AppAuthentication } from "components/shared/layer/AppAuthentication";
 import { AppLayout } from "AppLayout";
+import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
+import { AnyAction, CombinedState, ThunkMiddleware } from "@reduxjs/toolkit";
+import { IRootState } from "redux/reducers";
+
+/**
+ * Re-usable StoreType, for any services typing it.
+ */
+type StoreType = ToolkitStore<
+	CombinedState<IRootState>,
+	AnyAction,
+	[ThunkMiddleware<CombinedState<IRootState>, AnyAction, undefined>]
+>;
 
 const appStateService = new StateService(store);
 
@@ -30,6 +42,6 @@ function App(): JSX.Element {
 //      </MiniContextProvider>;
 // }
 
-export { store, appStateService };
+export { store, appStateService, StoreType };
 
 export default App;
