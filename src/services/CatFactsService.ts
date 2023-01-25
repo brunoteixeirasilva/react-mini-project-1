@@ -11,7 +11,7 @@ interface ICatFactItem {
  * Contract for shaping the Activities microservice of BoredAPI.
  */
 interface ICatFacts {
-	get: () => Promise<ICatFactItem>;
+	get: () => Promise<ICatFactItem[]>;
 }
 
 /**
@@ -27,11 +27,11 @@ interface ICatFactsService {
  */
 class CatFactsService implements ICatFactsService {
 	baseURL = "https://catfact.ninja";
-	facts = null;
+	facts: null | ICatFacts = null;
 
 	constructor() {
 		this.facts = {
-			get: async function () {
+			get: async function (): Promise<ICatFactItem[]> {
 				const result = await fetch(`${this.baseURL}/facts`, {
 					method: "GET",
 					headers: {
