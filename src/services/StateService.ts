@@ -4,6 +4,7 @@ import { RootState } from "redux/store";
 import { AuthService } from "./AuthService";
 import { IBoredAPIService, BoredAPIService } from "./BoredAPIService";
 import { UserService } from "./UserService";
+import { CatFactsService } from "./CatFactsService";
 import { AppManagerService } from "./AppManagerService";
 
 /**
@@ -13,6 +14,7 @@ interface IStateServices {
 	_store: StoreType;
 	appManager: IAppManagerService;
 	auth: AuthService;
+	catFacts: CatFactsService;
 	user: UserService;
 	boredAPI: IBoredAPIService;
 }
@@ -24,6 +26,7 @@ class StateService implements IStateServices {
 	_store: StoreType;
 	appManager: IAppManagerService;
 	auth: AuthService;
+	catFacts: CatFactsService;
 	user: UserService;
 	boredAPI: IBoredAPIService;
 
@@ -31,6 +34,7 @@ class StateService implements IStateServices {
 		this._store = reduxStore;
 		this.appManager = new AppManagerService();
 		this.auth = new AuthService(reduxStore);
+		this.catFacts = new CatFactsService();
 		this.user = new UserService(reduxStore);
 		this.boredAPI = new BoredAPIService();
 	}

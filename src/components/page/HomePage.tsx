@@ -53,9 +53,15 @@ function HomePage(): JSX.Element {
 	}
 
 	async function callService() {
-		const response = await service.boredAPI.activities.get();
+		try {
+			const response = await service.catFacts.facts.get();
 
-		alert("Service has replied with: " + response);
+			debugger;
+
+			alert("Service has replied with: " + response);
+		} catch (ex) {
+			console.error(`Oops, an error occurred: ${ex}`);
+		}
 	}
 
 	return (
@@ -84,8 +90,10 @@ function HomePage(): JSX.Element {
 							</button>
 						</div>
 						<div>
-							<h4>Alert Button</h4>
-							<button onClick={openAlert}>Alert!</button>
+							<form onSubmit={openAlert}>
+								<h4>Alert Button</h4>
+								<button type="submit">Alert!</button>
+							</form>
 						</div>
 					</section>
 				</>
