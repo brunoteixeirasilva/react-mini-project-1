@@ -30,8 +30,6 @@ class UserService {
 	setId(id: string) {
 		if (!this._store) return;
 
-		debugger;
-
 		this._store.dispatch(actions.setId(id));
 	}
 	getEmail() {

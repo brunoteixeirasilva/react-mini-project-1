@@ -6,9 +6,13 @@
         "jsx": "react",
         "paths": {
             "components/*": ["components/*"],
+            "hooks/*": ["hooks/*"],
+            "interfaces/*": ["interfaces/*"],
+            "models/*": ["models/*"],
+            "redux/*": ["redux/*"],
             "services/*": ["services/*"],
             "storage/*": ["storage/*"],
-            "router/*": ["components/router/*"]
+            "router/*": ["components/router/*"],
         },
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
