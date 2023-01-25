@@ -44,10 +44,24 @@ function HomePage(): JSX.Element {
 		// setTimestamp(new Date().getTime());
 	};
 
-	async function onCallService() {
-		const response = await service.boredAPI.get();
+	async function setApplicationTitle() {
+		return await service.appManager.setAppTitle("Test title");
+	}
 
-		alert("Service has replied with: " + response);
+	async function openAlert() {
+		return await service.appManager.showMessage("Hi Team!");
+	}
+
+	async function callService() {
+		try {
+			const response = await service.catFacts.facts.get();
+
+			debugger;
+
+			alert("Service has replied with: " + response);
+		} catch (ex) {
+			console.error(`Oops, an error occurred: ${ex}`);
+		}
 	}
 
 	return (
@@ -63,9 +77,24 @@ function HomePage(): JSX.Element {
 						/>
 						<br />
 						<div>Render Time: {timestamp}</div>
-						<button onClick={onCallService}>
-							Call external service
-						</button>
+						<div>
+							<h4>Bored API Service</h4>
+							<button onClick={callService}>
+								Call external service
+							</button>
+						</div>
+						<div>
+							<h4>Set Application Title Button</h4>
+							<button onClick={setApplicationTitle}>
+								Set it!
+							</button>
+						</div>
+						<div>
+							<form onSubmit={openAlert}>
+								<h4>Alert Button</h4>
+								<button type="submit">Alert!</button>
+							</form>
+						</div>
 					</section>
 				</>
 			) : (

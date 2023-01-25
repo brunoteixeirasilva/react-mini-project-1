@@ -7,76 +7,41 @@ export const userProfileSlice = createSlice({
 	name: _sliceName,
 	initialState,
 	reducers: {
-		// set: function (state, action) {
-		//     // this.user.setId(user.id);
-		//     // this.user.setEmail(user.email);
-		//     // this.user.setName(user.name);
-		//     // this.user.setIsAdmin(user.isAdmin);
-		// },
-
-		// [DONE] name = "";
-		setName(state, action: PayloadAction<string>): void {
-			// console.log(action)
-			// action = {
-			//    type: string,
-			//    payload: string
-			// }
-
+		setName(state, action: PayloadAction<string>) {
 			// Setting new state value
-			debugger;
 			state.name = action.payload;
-			// Similar to old => _storage.user.name = name;
-
-			// return state;
 		},
-
-		// [DONE] id = "";
-		setId(state, action: PayloadAction<string>): void {
-			// console.log(action)
-			// action = {
-			//    type: string,
-			//    payload: string
-			// }
+		setId(state, action: PayloadAction<string>) {
 			state.id = action.payload;
-			// Similar to old => _storage.user.id = id;
-
-			// return state;
 		},
-
-		// [DONE] mail = "";
-		setEmail(state, action: PayloadAction<string>): void {
-			// console.log(action)
-			// action = {
-			//    type: string,
-			//    payload: string
-			// }
+		setEmail(state, action: PayloadAction<string>) {
 			state.mail = action.payload;
-			// Similar to old => _storage.user.email = email;
-
-			// return state;
 		},
-
-		// [DONE] isAdmin = false;
-		setIsAdmin(state, action: PayloadAction<boolean>): void {
-			// console.log(action)
-			// action = {
-			//    type: string,
-			//    payload: boolean
-			// }
+		setIsAdmin(state, action: PayloadAction<boolean>) {
 			state.isAdmin = action.payload;
-			//_storage.user.isAdmin = isAdmin;
-
-			// return state;
+		},
+		setAuthenticating(state, action: PayloadAction<boolean>): void {
+			state.authenticating = action.payload;
+		},
+		setAuthenticated(state, action: PayloadAction<boolean>): void {
+			state.authenticated = action.payload;
+			state.authenticating = false;
 		}
 	}
 });
 
-export const { actions, reducer } = userProfileSlice;
-
-export const { setName, setId, setEmail, setIsAdmin } =
-	userProfileSlice.actions;
+export const { reducer, actions } = userProfileSlice;
 
 export default reducer;
+
+// export const {
+// 	setName,
+// 	setId,
+// 	setEmail,
+// 	setIsAdmin,
+// 	setAuthenticating,
+// 	setAuthenticated
+// } = userProfileSlice.actions;
 
 // setName("Meandro");
 

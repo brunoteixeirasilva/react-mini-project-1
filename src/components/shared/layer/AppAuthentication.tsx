@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useAppState } from "hooks/useAppState";
-
+import { appStateService } from "App";
 import { Selectors } from "redux/selectors/userProfileSelectors";
 
 /**
@@ -19,30 +18,26 @@ function AppAuthentication({
 	children,
 	...otherProps
 }: IAppAuthenticationProps): JSX.Element {
-	const st = useAppState();
-	const id = useSelector(Selectors.selectUserProfileId);
-	const name = useSelector(Selectors.selectUserProfileName);
-	const isAuthenticated = !!st && !!id && !!name;
-	debugger;
-	if (!isAuthenticated) {
+	const st = appStateService;
+	const authenticating = useSelector(Selectors.selectAuthenticating);
+	const authenticated = useSelector(Selectors.selectAuthenticated);
+	// const isAuthenticated = !!st && !authenticating && !!authenticated;
+
+	if (!authenticating && !authenticated) {
+		console.log("Not authenticated");
 		st.auth.login(
-			st.isLoading,
-			st.isLoaded,
-			() => {
-				st.setIsLoading(true);
+			async () => {
+				console.log("Authentication started");
+				st.auth.setAuthenticating(true);
 			},
-			() => {
-				st.setIsLoaded(true);
-				st.setIsLoading(false);
+			async () => {
+				console.log("Authentication completed");
+				st.auth.setAuthenticated(true);
 			}
 		);
 	}
 
-	return isAuthenticated ? (
-		React.cloneElement(children, otherProps)
-	) : (
-		<>401 User not authenticated</>
-	);
+	return authenticated ? children : <>401 User not authenticated</>;
 }
 
 export { AppAuthentication, IAppAuthenticationProps };

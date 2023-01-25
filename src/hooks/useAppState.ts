@@ -1,12 +1,18 @@
 import { useState } from "react";
-import { appState } from "App";
+import { appStateService } from "App";
 
 /**
  * Constructs a hook-consumable detached application state.
  */
 export function useAppState() {
-    const [isLoading, setIsLoading] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isLoaded, setIsLoaded] = useState(false);
 
-    return { ...appState, isLoading, setIsLoading, isLoaded, setIsLoaded };
+	return {
+		...appStateService,
+		isLoading,
+		setIsLoading,
+		isLoaded,
+		setIsLoaded
+	};
 }

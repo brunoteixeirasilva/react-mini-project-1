@@ -1,11 +1,20 @@
+import { StoreType } from "App";
+import { IAppManagerService } from "interfaces/IAppManagerService";
 import { RootState } from "redux/store";
 import { AuthService } from "./AuthService";
 import { IBoredAPIService, BoredAPIService } from "./BoredAPIService";
 import { UserService } from "./UserService";
+import { CatFactsService } from "./CatFactsService";
+import { AppManagerService } from "./AppManagerService";
 
+/**
+ * Contract for the Application's Service and State management layer.
+ */
 interface IStateServices {
-	_store: RootState;
+	_store: StoreType;
+	appManager: IAppManagerService;
 	auth: AuthService;
+	catFacts: CatFactsService;
 	user: UserService;
 	boredAPI: IBoredAPIService;
 }
@@ -14,14 +23,18 @@ interface IStateServices {
  * Class for managing the access to a State Layer in the app.
  */
 class StateService implements IStateServices {
-	_store = null;
-	auth = null;
-	user = null;
-	boredAPI = null;
+	_store: StoreType;
+	appManager: IAppManagerService;
+	auth: AuthService;
+	catFacts: CatFactsService;
+	user: UserService;
+	boredAPI: IBoredAPIService;
 
-	constructor(reduxStore) {
+	constructor(reduxStore: StoreType) {
 		this._store = reduxStore;
+		this.appManager = new AppManagerService();
 		this.auth = new AuthService(reduxStore);
+		this.catFacts = new CatFactsService();
 		this.user = new UserService(reduxStore);
 		this.boredAPI = new BoredAPIService();
 	}

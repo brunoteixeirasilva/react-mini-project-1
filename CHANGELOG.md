@@ -91,6 +91,13 @@
 -   [DONE][0.3h] Created BoredAPI service class to consume the third-party service.
 -   [DONE][0.1h] Created a function to call the created service on Homepage by means of a button (untested)
 
+### 04/01/2023 - React Session # 19
+
+#### Changes Planned
+
+-   [WIP][0.3h] Debug and fix the last implementation
+-   [TODO][0.3h] Add new state structure and make use of it
+
 ### Future Work
 
 -   [TODO][1.0h] Create new page Profile.

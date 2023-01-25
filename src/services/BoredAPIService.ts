@@ -33,11 +33,18 @@ class BoredAPIService implements IBoredAPIService {
 		this.baseURL = "https://www.boredapi.com/api";
 		this.activities = {
 			get: async function () {
-				const result: IBoredActivity = await fetch(
-					`${this.baseURL}/activity`
-				).then((response) => {
-					return response.json();
+				const blobResult = await fetch(`${this.baseURL}/activity`, {
+					method: "GET"
+				}).then((response) => {
+					debugger;
+					return response.blob();
 				});
+
+				debugger;
+
+				const result: IBoredActivity = JSON.parse(
+					await blobResult.text()
+				);
 
 				debugger;
 
