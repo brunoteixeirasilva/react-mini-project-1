@@ -57,6 +57,8 @@ function HomePage(): JSX.Element {
 			const response = await service.catFacts.facts.get();
 
 			console.log(response.data);
+
+			alert("Data was logged in console successfully.");
 		} catch (ex) {
 			console.error(`Oops, an error occurred: ${ex}`);
 		}
