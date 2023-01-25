@@ -56,9 +56,7 @@ function HomePage(): JSX.Element {
 		try {
 			const response = await service.catFacts.facts.get();
 
-			debugger;
-
-			alert("Service has replied with: " + response);
+			console.log(response.data);
 		} catch (ex) {
 			console.error(`Oops, an error occurred: ${ex}`);
 		}

@@ -1,17 +1,15 @@
 /**
  * Tipifies the shape of the response object provided by the /activity microservice.
  */
-interface ICatFactItem {
-	activity: string;
-	accessibility: number;
-	type: string;
+interface ICatFactResponse {
+	data: any[];
 }
 
 /**
  * Contract for shaping the Activities microservice of BoredAPI.
  */
 interface ICatFacts {
-	get: () => Promise<ICatFactItem[]>;
+	get: () => Promise<ICatFactResponse>;
 }
 
 /**
@@ -21,18 +19,20 @@ interface ICatFactsService {
 	facts: ICatFacts;
 }
 
+const getURL = () => "https://catfact.ninja";
+
 /**
  * Service which implements the contract of the BoredAPI services,
  * including the Microservice of /activity.
  */
 class CatFactsService implements ICatFactsService {
-	baseURL = "https://catfact.ninja";
+	baseURL = getURL();
 	facts: null | ICatFacts = null;
 
 	constructor() {
 		this.facts = {
-			get: async function (): Promise<ICatFactItem[]> {
-				const result = await fetch(`${this.baseURL}/facts`, {
+			get: async (): Promise<ICatFactResponse> => {
+				const result = await fetch(`${getURL()}/facts`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -40,11 +40,8 @@ class CatFactsService implements ICatFactsService {
 						"Cache-Control": "no-cache"
 					}
 				}).then((response) => {
-					debugger;
 					return response.json();
 				});
-
-				debugger;
 
 				return result;
 			}
@@ -52,4 +49,4 @@ class CatFactsService implements ICatFactsService {
 	}
 }
 
-export { ICatFactItem, ICatFacts, ICatFactsService, CatFactsService };
+export { ICatFactResponse, ICatFacts, ICatFactsService, CatFactsService };
