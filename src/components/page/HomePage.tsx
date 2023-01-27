@@ -6,6 +6,7 @@ import { MiniContext, MiniContextConsumer } from "storage/context/index";
 import { useAppState } from "hooks/useAppState";
 
 import { Selectors } from "redux/selectors/userProfileSelectors";
+import { APIController, IAPIController } from "components/api/APIController";
 
 /**
  * Page Component: HomePage
@@ -23,6 +24,27 @@ function HomePage(): JSX.Element {
 	// const name = service.user.getName(); // Subscriber pattern
 	const name = useSelector(Selectors.selectUserProfileName); // Selector pattern
 	// const name = useMemo(() => data?.profile?.name ?? "", [service]);
+
+	const apiList: IAPIController[] = [
+		{
+			key: service.catFacts.key,
+			title: "API Service",
+			onClick: callService,
+			buttonText: "Call external service"
+		},
+		{
+			key: "title-service",
+			title: "Set Application Title Button",
+			onClick: setApplicationTitle,
+			buttonText: "Set App Title"
+		},
+		{
+			key: "alert-service",
+			title: "Alert Button",
+			onClick: openAlert,
+			buttonText: "Alert!"
+		}
+	];
 
 	function setProfileName(event) {
 		event.preventDefault();
@@ -77,24 +99,26 @@ function HomePage(): JSX.Element {
 						/>
 						<br />
 						<div>Render Time: {timestamp}</div>
-						<div>
-							<h4>Bored API Service</h4>
-							<button onClick={callService}>
-								Call external service
-							</button>
-						</div>
-						<div>
-							<h4>Set Application Title Button</h4>
-							<button onClick={setApplicationTitle}>
-								Set it!
-							</button>
-						</div>
-						<div>
-							<form onSubmit={openAlert}>
-								<h4>Alert Button</h4>
-								<button type="submit">Alert!</button>
-							</form>
-						</div>
+						<article
+							style={{
+								marginTop: "20px",
+								display: "flex",
+								flexFlow: "column nowrap",
+								justifyContent: "center",
+								alignItems: "center"
+							}}
+						>
+							{apiList.map((apiConfig) => {
+								return (
+									<APIController
+										key={apiConfig.key}
+										title={apiConfig.title}
+										onClick={apiConfig.onClick}
+										buttonText={apiConfig.buttonText}
+									/>
+								);
+							})}
+						</article>
 					</section>
 				</>
 			) : (

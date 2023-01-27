@@ -1,3 +1,5 @@
+import { IService } from "interfaces";
+
 /**
  * Tipifies the shape of the response object provided by the /activity microservice.
  */
@@ -17,34 +19,31 @@ interface IBoredAPIActivities {
 /**
  * Contract for the shape of the BoredAPI service itself.
  */
-interface IBoredAPIService {
+interface IBoredAPIService extends IService {
 	activities: IBoredAPIActivities;
 }
+
+const getURL = () => "https://www.boredapi.com/api";
 
 /**
  * Service which implements the contract of the BoredAPI services,
  * including the Microservice of /activity.
  */
 class BoredAPIService implements IBoredAPIService {
-	baseURL = "";
+	baseURL = getURL();
 	activities = null;
+	key = "bored-api-service";
 
 	constructor() {
-		this.baseURL = "https://www.boredapi.com/api";
 		this.activities = {
 			get: async function () {
-				const blobResult = await fetch(`${this.baseURL}/activity`, {
+				const jsonResult = await fetch(`${getURL()}/activity`, {
 					method: "GET"
 				}).then((response) => {
-					debugger;
-					return response.blob();
+					return response.json();
 				});
 
-				debugger;
-
-				const result: IBoredActivity = JSON.parse(
-					await blobResult.text()
-				);
+				const result: IBoredActivity = JSON.parse(jsonResult);
 
 				debugger;
 

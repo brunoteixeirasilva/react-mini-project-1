@@ -1,3 +1,5 @@
+import { IService } from "interfaces";
+
 /**
  * Tipifies the shape of the response object provided by the /activity microservice.
  */
@@ -15,11 +17,13 @@ interface ICatFacts {
 /**
  * Contract for the shape of the BoredAPI service itself.
  */
-interface ICatFactsService {
+interface ICatFactsService extends IService {
 	facts: ICatFacts;
 }
 
-const getURL = () => "https://catfact.ninja";
+const apiURL = "https://catfact.ninja";
+
+const getURL = () => apiURL;
 
 /**
  * Service which implements the contract of the BoredAPI services,
@@ -28,10 +32,11 @@ const getURL = () => "https://catfact.ninja";
 class CatFactsService implements ICatFactsService {
 	baseURL = getURL();
 	facts: null | ICatFacts = null;
+	key = "cat-facts-service";
 
 	constructor() {
 		this.facts = {
-			get: async (): Promise<ICatFactResponse> => {
+			get: async function (): Promise<ICatFactResponse> {
 				const result = await fetch(`${getURL()}/facts`, {
 					method: "GET",
 					headers: {
