@@ -1,13 +1,4 @@
-import { IService } from "interfaces";
-
-/**
- * Tipifies the shape of the response object provided by the /activity microservice.
- */
-interface IBoredActivity {
-	activity: string;
-	accessibility: number;
-	type: string;
-}
+import { IService, IBoredActivity } from "interfaces";
 
 /**
  * Contract for shaping the Activities microservice of BoredAPI.
@@ -43,9 +34,7 @@ class BoredAPIService implements IBoredAPIService {
 					return response.json();
 				});
 
-				const result: IBoredActivity = JSON.parse(jsonResult);
-
-				debugger;
+				const result: IBoredActivity = jsonResult;
 
 				return result;
 			}
@@ -53,9 +42,4 @@ class BoredAPIService implements IBoredAPIService {
 	}
 }
 
-export {
-	IBoredActivity,
-	IBoredAPIActivities,
-	IBoredAPIService,
-	BoredAPIService
-};
+export { IBoredAPIActivities, IBoredAPIService, BoredAPIService };

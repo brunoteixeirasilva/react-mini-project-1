@@ -25,27 +25,6 @@ function HomePage(): JSX.Element {
 	const name = useSelector(Selectors.selectUserProfileName); // Selector pattern
 	// const name = useMemo(() => data?.profile?.name ?? "", [service]);
 
-	const apiList: IAPIController[] = [
-		{
-			key: service.catFacts.key,
-			title: "API Service",
-			onClick: callService,
-			buttonText: "Call external service"
-		},
-		{
-			key: "title-service",
-			title: "Set Application Title Button",
-			onClick: setApplicationTitle,
-			buttonText: "Set App Title"
-		},
-		{
-			key: "alert-service",
-			title: "Alert Button",
-			onClick: openAlert,
-			buttonText: "Alert!"
-		}
-	];
-
 	function setProfileName(event) {
 		event.preventDefault();
 
@@ -74,7 +53,7 @@ function HomePage(): JSX.Element {
 		return await service.appManager.showMessage("Hi Team!");
 	}
 
-	async function callService() {
+	async function callCatFacts() {
 		try {
 			const response = await service.catFacts.facts.get();
 
@@ -85,6 +64,45 @@ function HomePage(): JSX.Element {
 			console.error(`Oops, an error occurred: ${ex}`);
 		}
 	}
+
+	async function callBoredAPI() {
+		try {
+			const response = await service.boredAPI.activities.get();
+
+			console.log(response);
+
+			alert("Data was logged in console successfully.");
+		} catch (ex) {
+			console.error(`Oops, an error occurred: ${ex}`);
+		}
+	}
+
+	const apiList: IAPIController[] = [
+		{
+			key: service.boredAPI.key,
+			title: "Bored API",
+			onClick: callBoredAPI,
+			buttonText: "Call Bored API"
+		},
+		{
+			key: service.catFacts.key,
+			title: "API Service",
+			onClick: callCatFacts,
+			buttonText: "Call cat facts service"
+		},
+		{
+			key: "title-service",
+			title: "Set Application Title Button",
+			onClick: setApplicationTitle,
+			buttonText: "Set App Title"
+		},
+		{
+			key: "alert-service",
+			title: "Alert Button",
+			onClick: openAlert,
+			buttonText: "Alert!"
+		}
+	];
 
 	return (
 		<div>
