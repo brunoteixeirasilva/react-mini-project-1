@@ -1,5 +1,5 @@
 import { StoreType } from "App";
-import { actions } from "../redux/reducers/userProfileReducer";
+import { actions } from "redux/reducers/userProfileReducer";
 
 /**
  * Class for managing the User data in the State Layer of the app.

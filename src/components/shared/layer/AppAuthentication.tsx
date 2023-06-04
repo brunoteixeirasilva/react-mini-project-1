@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { redirect } from "react-router-dom";
+
 import { appStateService } from "App";
 import { Selectors } from "redux/selectors/userProfileSelectors";
+import { Routes } from "components/router/Routes";
 
 /**
  * Contract for the properties provided to the AppAuthentication component.
@@ -22,9 +25,14 @@ function AppAuthentication({
 	const authenticating = useSelector(Selectors.selectAuthenticating);
 	const authenticated = useSelector(Selectors.selectAuthenticated);
 	// const isAuthenticated = !!st && !authenticating && !!authenticated;
+	// const history = createBrowserHistory();
 
 	if (!authenticating && !authenticated) {
 		console.log("Not authenticated");
+
+		// TODO: Fix this redirect
+		redirect(Routes.Login);
+
 		st.auth.login(
 			async () => {
 				console.log("Authentication started");
@@ -37,7 +45,7 @@ function AppAuthentication({
 		);
 	}
 
-	return authenticated ? children : <>401 User not authenticated</>;
+	return <>{children}</>;
 }
 
 export { AppAuthentication, IAppAuthenticationProps };

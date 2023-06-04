@@ -5,10 +5,10 @@ import { Selectors } from "redux/selectors/userProfileSelectors";
 /**
  * Default data-set
  */
-const _lorenzo = {
+const _mockUser = {
 	id: "123",
-	name: "Lorenzo",
-	email: "mail@any.com",
+	name: "Bruno",
+	email: "bruno@gmail.com",
 	isAdmin: true
 };
 
@@ -32,16 +32,16 @@ class AuthService {
 		if (typeof onLoading === "function") Promise.resolve(onLoading());
 
 		// not async
-		appStateService.user.setId(_lorenzo.id);
+		appStateService.user.setId(_mockUser.id);
 
 		// not async
-		appStateService.user.setName(_lorenzo.name);
+		appStateService.user.setName(_mockUser.name);
 
 		// not async
-		appStateService.user.setEmail(_lorenzo.email);
+		appStateService.user.setEmail(_mockUser.email);
 
 		// not async
-		appStateService.user.setIsAdmin(_lorenzo.isAdmin);
+		appStateService.user.setIsAdmin(_mockUser.isAdmin);
 
 		if (typeof onLoaded === "function") Promise.resolve(onLoaded());
 	}

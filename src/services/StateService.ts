@@ -1,10 +1,11 @@
 import { StoreType } from "App";
 import { IAppManagerService } from "interfaces/IAppManagerService";
 import { RootState } from "redux/store";
+
 import { AuthService } from "./AuthService";
-import { IBoredAPIService, BoredAPIService } from "./BoredAPIService";
+// import { IBoredAPIService, BoredAPIService } from "./BoredAPIService";
 import { UserService } from "./UserService";
-import { CatFactsService } from "./CatFactsService";
+import { PizzaService } from "./PizzaService";
 import { AppManagerService } from "./AppManagerService";
 
 /**
@@ -14,9 +15,9 @@ interface IStateServices {
 	_store: StoreType;
 	appManager: IAppManagerService;
 	auth: AuthService;
-	catFacts: CatFactsService;
+	Pizza: PizzaService;
 	user: UserService;
-	boredAPI: IBoredAPIService;
+	// boredAPI: IBoredAPIService;
 }
 
 /**
@@ -26,17 +27,17 @@ class StateService implements IStateServices {
 	_store: StoreType;
 	appManager: IAppManagerService;
 	auth: AuthService;
-	catFacts: CatFactsService;
+	Pizza: PizzaService;
 	user: UserService;
-	boredAPI: IBoredAPIService;
+	// boredAPI: IBoredAPIService;
 
 	constructor(reduxStore: StoreType) {
 		this._store = reduxStore;
 		this.appManager = new AppManagerService();
 		this.auth = new AuthService(reduxStore);
-		this.catFacts = new CatFactsService();
+		this.Pizza = new PizzaService();
 		this.user = new UserService(reduxStore);
-		this.boredAPI = new BoredAPIService();
+		// this.boredAPI = new BoredAPIService();
 	}
 }
 

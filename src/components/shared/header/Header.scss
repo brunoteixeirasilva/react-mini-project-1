@@ -1,0 +1,26 @@
+@use "static/sass/theme";
+
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    // border: 1px solid black;
+    padding: theme.$app-header-padding;
+    background: theme.$app-header-color;
+    box-shadow: theme.$app-header-box-shadow;
+}
+
+.appTitle {
+    flex: 0 0 auto;
+    font-weight: theme.$font-weight-bold;
+    text-decoration: none;
+    color: theme.$app-title-color;
+}
+
+.navButtons {
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
+.navButtonUnit {
+    margin-left: theme.$margin-unit;
+}

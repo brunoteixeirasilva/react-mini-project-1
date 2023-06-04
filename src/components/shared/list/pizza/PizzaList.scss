@@ -1,0 +1,15 @@
+@use "static/sass/theme";
+
+.pizzaList {
+  list-style: none;
+  padding: 0;
+  margin: auto;
+  margin-top: theme.$app-box-margin;
+  width: 96vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: theme.$app-box-margin;
+  grid-row-gap: theme.$app-box-margin;
+}
+  

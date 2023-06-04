@@ -1,0 +1,46 @@
+// Wide-level margin, padding and spacing definitions
+$margin-unit: 8px;
+$padding-unit: 16px;
+
+// Color system definitions
+$app-title-color: rgba(0, 0, 0, 0.8);
+
+// Box system definitions
+$app-box-margin: $margin-unit;
+$app-box-margin-top: $app-box-margin;
+$app-box-margin-bottom: $app-box-margin;
+
+// Box shadow definitions
+$box-shadow-color: rgba(0, 0, 0, 0.2);
+$box-shadow-color-hover: rgba(0, 0, 0, 0.4);
+
+// Header definitions
+$app-header-box-shadow: 2px 0px 10px $box-shadow-color;
+$app-header-color: #CCC;
+$app-header-padding: $padding-unit calc(1.5 * $padding-unit);
+
+// Font definitions
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+$font-size: 16px;
+$font-line-height: 1.5;
+$font-weight: 400;
+$font-weight-bold: 500;
+$font-weight-bolder: 700;
+$font-weight-light: 300;
+$font-weight-lighter: 100;
+
+// Button definitions
+$button-padding: $padding-unit;
+$button-border-radius: 4px;
+$button-border-width: 1px;
+$button-border-color: rgba(0, 0, 0, 0.2);
+$button-border-color-hover: rgba(0, 0, 0, 0.4);
+$button-background-color: #FFF;
+$button-background-color-hover: #EEE;
+$button-color: rgba(0, 0, 0, 0.8);
+$button-color-hover: rgba(0, 0, 0, 0.8);
+$button-font-weight: $font-weight-bold;
+$button-font-size: $font-size;
+$button-line-height: $font-line-height;

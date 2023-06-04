@@ -1,12 +1,21 @@
 import React from "react";
-import store from "redux/store";
 import { Provider } from "react-redux";
-import { StateService } from "services/StateService";
-import { AppAuthentication } from "components/shared/layer/AppAuthentication";
-import { AppLayout } from "AppLayout";
+// import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { AnyAction, CombinedState, ThunkMiddleware } from "@reduxjs/toolkit";
+
+import store from "redux/store";
+import { AppLayout } from "AppLayout";
+
+import { StateService } from "services/StateService";
+import { AppAuthentication } from "components/shared/layer/AppAuthentication";
 import { IRootState } from "redux/reducers";
+
+// Page Components
+// import { Routes } from "components/router/Routes";
+// import { HomePage } from "components/page/HomePage";
+// import { LoginPage } from "components/page/LoginPage";
+// import { Error404Page } from "components/page/Error404Page";
 
 /**
  * Re-usable StoreType, for any services typing it.
@@ -19,8 +28,6 @@ type StoreType = ToolkitStore<
 
 const appStateService = new StateService(store);
 
-// const AppLayout = require("./AppLayout").AppLayout;
-
 /**
  * Application main (entry) point.
  * Mode: Using Redux
@@ -28,19 +35,10 @@ const appStateService = new StateService(store);
 function App(): JSX.Element {
 	return (
 		<Provider store={store}>
-			<AppAuthentication>
-				<AppLayout />
-			</AppAuthentication>
+			<AppLayout />
 		</Provider>
 	);
 }
-
-// Mode: Using the ContextAPI below
-// function App() {
-//     return <MiniContextProvider value={ContextData}>
-//          <AppLayout />
-//      </MiniContextProvider>;
-// }
 
 export { store, appStateService, StoreType };
 

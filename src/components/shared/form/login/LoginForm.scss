@@ -1,0 +1,63 @@
+@use "static/sass/theme";
+
+.ms-login-form {
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  
+    &__title {
+      text-align: center;
+      font-size: 24px;
+      color: #767676;
+      margin-bottom: 20px;
+    }
+  
+    &__input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+  
+    &__label {
+      font-size: 16px;
+      color: #767676;
+      margin-bottom: 5px;
+    }
+  
+    &__input {
+      padding: 10px;
+      border: 1px solid #dcdcdc;
+      border-radius: 3px;
+      font-size: 16px;
+  
+      &:focus {
+        border-color: #0078d4;
+        outline: none;
+      }
+    }
+  
+    &__submit-btn {
+      padding: 10px;
+      background-color: #0078d4;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  
+      &:hover {
+        background-color: #005a9e;
+      }
+  
+      &:active {
+        background-color: #004578;
+      }
+    }
+  }
+  

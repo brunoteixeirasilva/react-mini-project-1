@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Selectors } from "redux/selectors/userProfileSelectors";
-import { Routes } from "../router/Routes";
+import { Routes } from "components/router/Routes";
 
 import { useStyles } from "./Header.styles";
+
+import "./Header.scss";
 
 // import { MiniContext, MiniContextConsumer } from "storage/context";
 // import { useAppState } from "hooks/useAppState";
@@ -18,11 +20,12 @@ function Header(): JSX.Element {
 	const styles = useStyles();
 	// const data = useContext(MiniContext);
 	// const appStateService = useAppState();
+	const isAuthenticated = useSelector(Selectors.selectAuthenticated);
 	const userProfileName = useSelector(
 		Selectors.selectUserProfileNameWithAnon
 	);
 
-	return (
+	return isAuthenticated ? (
 		<header style={styles.header}>
 			<div style={styles.appTitle}>
 				<a href={Routes.Home}>Practice React</a>
@@ -43,7 +46,7 @@ function Header(): JSX.Element {
 				</span>
 			</nav>
 		</header>
-	);
+	) : null;
 }
 
 export { Header };

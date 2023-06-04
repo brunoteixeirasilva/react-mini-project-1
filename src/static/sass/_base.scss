@@ -1,0 +1,14 @@
+@use "static/sass/theme";
+
+body {
+    background-color: #fff;
+    color: #000;
+    // font-family: 'Roboto', sans-serif;
+    font-family: theme.$font-family;
+    font-size: theme.$font-size;
+    line-height: theme.$font-line-height;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

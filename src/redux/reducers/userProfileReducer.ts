@@ -34,17 +34,6 @@ export const { reducer, actions } = userProfileSlice;
 
 export default reducer;
 
-// export const {
-// 	setName,
-// 	setId,
-// 	setEmail,
-// 	setIsAdmin,
-// 	setAuthenticating,
-// 	setAuthenticated
-// } = userProfileSlice.actions;
-
-// setName("Meandro");
-
 // TODO: Selectors
 
 // get: () => {

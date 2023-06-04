@@ -11,6 +11,7 @@
             "models/*": ["models/*"],
             "redux/*": ["redux/*"],
             "services/*": ["services/*"],
+            "static/*": ["static/*", "static/sass/*"],
             "storage/*": ["storage/*"],
             "router/*": ["components/router/*"],
         },
