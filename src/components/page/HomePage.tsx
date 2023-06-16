@@ -30,6 +30,8 @@ function HomePage(): JSX.Element {
 
 			setExternalData(response);
 
+			await service.zapier.zapier.post(JSON.stringify(response));
+
 			// console.log(response);
 
 			// alert("Pizza data returns successfully. See console.");

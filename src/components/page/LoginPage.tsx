@@ -6,7 +6,7 @@ import { Routes } from "components/router/Routes";
 import { LoginForm } from "components/shared/form/login/LoginForm";
 
 import { Selectors } from "redux/selectors/userProfileSelectors";
-import { translate } from "hooks/i18n";
+import { translate, useTranslate } from "hooks/i18n";
 
 /**
  * Page Component: LoginPage
@@ -14,6 +14,7 @@ import { translate } from "hooks/i18n";
  * @returns JSX.Element
  */
 function LoginPage() {
+	// const t = useTranslate();
 	const isAuth = useSelector(Selectors.selectAuthenticated);
 	const lang = { title: translate("page.login.title") };
 	const navigate = useNavigate();
@@ -24,10 +25,15 @@ function LoginPage() {
 	}
 
 	return (
-		<>
+		<div
+			style={{
+				backgroundImage:
+					"/img/background/isaac-chou-7aQIAPdxFZQ-unsplash.jpg"
+			}}
+		>
 			<div>{lang.title}</div>
 			<LoginForm />
-		</>
+		</div>
 	);
 }
 

@@ -3,5 +3,6 @@ export const dictionary = {
 	"app.description": "This is a pizza app",
 	"app.welcome": "Welcome to the pizza app",
 	"global.logout": "Logout",
-	"global.login": "Login"
+	"global.login": "Login",
+	"page.login.title": "Login"
 };

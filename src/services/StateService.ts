@@ -7,6 +7,7 @@ import { AuthService } from "./AuthService";
 import { UserService } from "./UserService";
 import { PizzaService } from "./PizzaService";
 import { AppManagerService } from "./AppManagerService";
+import { ZapierService } from "./ZapierService";
 
 /**
  * Contract for the Application's Service and State management layer.
@@ -17,6 +18,7 @@ interface IStateServices {
 	auth: AuthService;
 	Pizza: PizzaService;
 	user: UserService;
+	zapier: ZapierService;
 	// boredAPI: IBoredAPIService;
 }
 
@@ -29,6 +31,7 @@ class StateService implements IStateServices {
 	auth: AuthService;
 	Pizza: PizzaService;
 	user: UserService;
+	zapier: ZapierService;
 	// boredAPI: IBoredAPIService;
 
 	constructor(reduxStore: StoreType) {
@@ -37,6 +40,7 @@ class StateService implements IStateServices {
 		this.auth = new AuthService(reduxStore);
 		this.Pizza = new PizzaService();
 		this.user = new UserService(reduxStore);
+		this.zapier = new ZapierService();
 		// this.boredAPI = new BoredAPIService();
 	}
 }
