@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
+
+import { useTranslate } from "hooks/i18n";
+
 import "./LoginForm.scss";
 
 /**
@@ -7,6 +10,10 @@ import "./LoginForm.scss";
  * @returns
  */
 function LoginForm(): JSX.Element {
+	const formTitle = useTranslate("page.login.form.title");
+	const emailText = useTranslate("page.login.form.email");
+	const passwordText = useTranslate("page.login.form.password");
+	const submitText = useTranslate("page.login.form.submit");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -17,10 +24,10 @@ function LoginForm(): JSX.Element {
 
 	return (
 		<form className="ms-login-form" onSubmit={handleSubmit}>
-			<h2 className="ms-login-form__title">Sign in</h2>
+			<h2 className="ms-login-form__title">{formTitle}</h2>
 			<div className="ms-login-form__input-group">
 				<label htmlFor="email" className="ms-login-form__label">
-					Email
+					{emailText}
 				</label>
 				<input
 					type="email"
@@ -32,7 +39,7 @@ function LoginForm(): JSX.Element {
 			</div>
 			<div className="ms-login-form__input-group">
 				<label htmlFor="password" className="ms-login-form__label">
-					Password
+					{passwordText}
 				</label>
 				<input
 					type="password"
@@ -43,7 +50,7 @@ function LoginForm(): JSX.Element {
 				/>
 			</div>
 			<button type="submit" className="ms-login-form__submit-btn">
-				Sign in
+				{submitText}
 			</button>
 		</form>
 	);

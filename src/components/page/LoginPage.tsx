@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useMatch, useNavigate } from "react-router-dom";
 
@@ -7,6 +7,9 @@ import { LoginForm } from "components/shared/form/login/LoginForm";
 
 import { Selectors } from "redux/selectors/userProfileSelectors";
 import { translate, useTranslate } from "hooks/i18n";
+import { AppImageProvider } from "static/index";
+
+// import imagePath from "static/img/isaac-chou-7aQIAPdxFZQ-unsplash.jpg";
 
 /**
  * Page Component: LoginPage
@@ -16,7 +19,7 @@ import { translate, useTranslate } from "hooks/i18n";
 function LoginPage() {
 	// const t = useTranslate();
 	const isAuth = useSelector(Selectors.selectAuthenticated);
-	const lang = { title: translate("page.login.title") };
+	const loginPageTitle = useTranslate("page.login.title");
 	const navigate = useNavigate();
 
 	if (isAuth) {
@@ -27,11 +30,26 @@ function LoginPage() {
 	return (
 		<div
 			style={{
-				backgroundImage:
-					"/img/background/isaac-chou-7aQIAPdxFZQ-unsplash.jpg"
+				backgroundImage: `url(${AppImageProvider.Login.background})`,
+				backgroundRepeat: "no-repeat",
+				backgroundSize: "cover",
+				display: "flex",
+				flexFlow: "column nowrap",
+				justifyContent: "center",
+				alignItems: "center",
+				height: "100vh"
 			}}
 		>
-			<div>{lang.title}</div>
+			<div
+				style={{
+					flex: "0 0 auto",
+					fontSize: "2rem",
+					fontWeight: "bold",
+					color: "white"
+				}}
+			>
+				{loginPageTitle}
+			</div>
 			<LoginForm />
 		</div>
 	);

@@ -1,7 +1,31 @@
 import { useMemo } from "react";
 
-let _loadedFile: { dictionary: any } = null;
+declare type LangFile = { dictionary: any };
+
+let _loadedFile: LangFile = null;
 const _hashDict = {};
+
+/**
+ * (Async) Uses a dictionary to store the result of a function call,
+ * so that the function is not called again with the same arguments.
+ *  *
+ * @param fn The function to be memoized
+ * @param memoKey [Optional] The key to be used in the dictionary.
+ * @returns
+ */
+function memoizeAsync<T>(
+	fn: () => Promise<T>,
+	memoKey?: undefined | string
+): () => Promise<T> {
+	const resolvedKey = !memoKey ? fn.toString() : memoKey;
+
+	return async function () {
+		_hashDict[resolvedKey] =
+			_hashDict[resolvedKey] || fn.apply(undefined, arguments);
+
+		return _hashDict[resolvedKey];
+	};
+}
 
 /**
  * Uses a dictionary to store the result of a function call,
@@ -11,15 +35,16 @@ const _hashDict = {};
  * @param memoKey [Optional] The key to be used in the dictionary.
  * @returns
  */
-function memoize<T>(fn: () => T, memoKey?: undefined | string) {
-	const resolvedKey = !memoKey ? fn.toString() : memoKey;
+function memoize<T>(fn: () => T, memoKey?: undefined | string): () => T {
+	const resolvedKey = !memoKey ? JSON.stringify(arguments) : memoKey;
 
-	// In case the memoization hasn't been done yet
-	if (!_hashDict[resolvedKey]) {
-		_hashDict[resolvedKey] = fn();
-	}
+	return function () {
+		// In case the memoization hasn't been done yet
+		_hashDict[resolvedKey] =
+			_hashDict[resolvedKey] || fn.apply(undefined, arguments);
 
-	return _hashDict[resolvedKey];
+		return _hashDict[resolvedKey];
+	};
 }
 
 /**
@@ -30,11 +55,27 @@ interface i18nState {
 }
 
 /**
- * The possible languages state object.
+ * The possible languages state object. This is the default state.
  */
 const i18n: i18nState = {
-	language: "en_us"
+	language: "pt_br"
 };
+
+const memoizedLoadLangFile = memoize<LangFile>(
+	(): LangFile => {
+		_loadedFile = require(`./lang/${i18n.language}.js`) ?? {
+			dictionary: {}
+		};
+
+		return _loadedFile;
+	},
+	// async (): Promise<LangFile> => {
+	// 	_loadedFile = await import(`./lang/${i18n.language}.js`);
+
+	// 	return _loadedFile?.dictionary ?? {};
+	// },
+	i18n.language
+);
 
 /**
  * Finds the translation entry in the lang file and replaces the params.
@@ -45,21 +86,13 @@ const i18n: i18nState = {
  */
 function findTranslationKey(key: string, params: any) {
 	let resolvedTranslation: string;
-	const langFile = memoize(
-		// () => require(`/lang/${i18n.language}.js`),
-		async (): Promise<{ dictionary: any }> => {
-			debugger;
-			_loadedFile = await import(`./lang/${i18n.language}.js`);
 
-			return _loadedFile?.dictionary ?? {};
-		},
-		i18n.language
-	);
+	const langFile = memoizedLoadLangFile();
 
-	debugger;
+	if (!langFile) return key;
 
 	const foundKey =
-		Object.keys(langFile).find(
+		Object.keys(langFile.dictionary).find(
 			(translationKey) => translationKey === key
 		) ?? null;
 
@@ -72,7 +105,7 @@ function findTranslationKey(key: string, params: any) {
 		// Replaces the params in the translation entry
 		Object.keys(params).forEach((paramKey) => {
 			resolvedTranslation = resolvedTranslation.replace(
-				new RegExp(`@{${paramKey}}`, "g"),
+				new RegExp(`\${${paramKey}}`, "g"),
 				params[paramKey]
 			);
 		});
@@ -107,10 +140,17 @@ export function translate(key: string, params?: any) {
  * // The param "age" is not used in the translation entry, so it is ignored.
  */
 export function useTranslate(key: string, params?: any) {
-	const translation = useMemo(
-		() => findTranslationKey(key, params),
-		[key, params]
-	);
+	const translation = useMemo(() => translate(key, params), [key, params]);
 
 	return translation;
+}
+
+/**
+ * Custom hook for getting the whole translation dictionary.
+ * @returns The translation dictionary.
+ */
+export function useTranslateMap() {
+	const langFile = memoizedLoadLangFile();
+
+	return langFile.dictionary;
 }
