@@ -1,0 +1,34 @@
+@use "static/sass/theme";
+
+.Login {
+    &__container {
+        // background-image: url(${AppImageProvider.Login.background.src}),
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    &__pageTitle {
+        flex: 0 0 auto;
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    &__photoCredit {
+        background-color: rgba(0,0,0,0.5);
+        margin: 0.5rem;
+        margin-top: auto;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        flex: 0 0 auto;
+        font-size: 0.8rem;
+        color: white;
+        align-self: flex-end;
+        justify-self: flex-end;
+    }
+}

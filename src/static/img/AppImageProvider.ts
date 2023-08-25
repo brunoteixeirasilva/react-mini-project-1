@@ -1,12 +1,28 @@
 /**
+ * Contract for structuring the properties of the image metadata.
+ */
+export interface IImageMetadata {
+	src: string;
+}
+
+/**
+ * Contract for structuring the properties of the image metadata, including
+ * keeping the information of its author.
+ */
+export interface IProtectedImageMetadata extends IImageMetadata {
+	author: string;
+	authorLink: string;
+}
+
+/**
  * Contract for structuring the properties of the image provider.
  */
 export interface IImageProvider {
 	Main: {
-		logo: string;
+		logo: IImageMetadata;
 	};
 	Login: {
-		background: string;
+		background: IProtectedImageMetadata;
 	};
 }
 
@@ -16,6 +32,13 @@ export interface IImageProvider {
  * however, the solution is centralized.
  */
 export const AppImageProvider: IImageProvider = {
-	Main: { logo: "/img/logo192.png" },
-	Login: { background: "/img/background/isaac-chou-7aQIAPdxFZQ-unsplash.jpg" }
+	Main: { logo: { src: "/img/logo192.png" } },
+	Login: {
+		background: {
+			author: "Nathan Farrish",
+			authorLink:
+				"https://unsplash.com/es/fotos/ydyvTNi5Rdg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText",
+			src: "/img/background/nathan-farrish-ydyvTNi5Rdg-unsplash.jpg"
+		}
+	}
 };

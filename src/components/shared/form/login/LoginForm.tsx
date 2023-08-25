@@ -1,6 +1,8 @@
-import React, { useState, useTransition } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useTranslate } from "hooks/i18n";
+import { Routes } from "components/router/Routes";
 
 import "./LoginForm.scss";
 
@@ -14,12 +16,14 @@ function LoginForm(): JSX.Element {
 	const emailText = useTranslate("page.login.form.email");
 	const passwordText = useTranslate("page.login.form.password");
 	const submitText = useTranslate("page.login.form.submit");
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		// handle your form submission logic here
+		navigate(Routes.Home);
 	};
 
 	return (

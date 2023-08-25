@@ -105,7 +105,7 @@ function findTranslationKey(key: string, params: any) {
 		// Replaces the params in the translation entry
 		Object.keys(params).forEach((paramKey) => {
 			resolvedTranslation = resolvedTranslation.replace(
-				new RegExp(`\${${paramKey}}`, "g"),
+				`\$\{${paramKey}\}`,
 				params[paramKey]
 			);
 		});

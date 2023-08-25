@@ -2,6 +2,8 @@
 $margin-unit: 8px;
 $padding-unit: 16px;
 
+// $box-padding: $padding-unit;
+
 // Color system definitions
 $app-title-color: rgba(0, 0, 0, 0.8);
 
@@ -15,7 +17,7 @@ $box-shadow-color: rgba(0, 0, 0, 0.2);
 $box-shadow-color-hover: rgba(0, 0, 0, 0.4);
 
 // Header definitions
-$app-header-box-shadow: 2px 0px 10px $box-shadow-color;
+$app-header-box-shadow: 2px 0px 1px $box-shadow-color;
 $app-header-color: #CCC;
 $app-header-padding: $padding-unit calc(1.5 * $padding-unit);
 

@@ -1,15 +1,15 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { useMatch, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Routes } from "components/router/Routes";
 import { LoginForm } from "components/shared/form/login/LoginForm";
 
 import { Selectors } from "redux/selectors/userProfileSelectors";
-import { translate, useTranslate } from "hooks/i18n";
+import { useTranslate } from "hooks/i18n";
 import { AppImageProvider } from "static/index";
 
-// import imagePath from "static/img/isaac-chou-7aQIAPdxFZQ-unsplash.jpg";
+import "./LoginPage.scss";
 
 /**
  * Page Component: LoginPage
@@ -20,6 +20,9 @@ function LoginPage() {
 	// const t = useTranslate();
 	const isAuth = useSelector(Selectors.selectAuthenticated);
 	const loginPageTitle = useTranslate("page.login.title");
+	const photoCredit = useTranslate("page.login.photoCredit", {
+		author: AppImageProvider.Login.background.author
+	});
 	const navigate = useNavigate();
 
 	if (isAuth) {
@@ -29,28 +32,18 @@ function LoginPage() {
 
 	return (
 		<div
+			className="Login__container"
 			style={{
-				backgroundImage: `url(${AppImageProvider.Login.background})`,
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "cover",
-				display: "flex",
-				flexFlow: "column nowrap",
-				justifyContent: "center",
-				alignItems: "center",
-				height: "100vh"
+				backgroundImage: `url(${AppImageProvider.Login.background.src})`
 			}}
 		>
-			<div
-				style={{
-					flex: "0 0 auto",
-					fontSize: "2rem",
-					fontWeight: "bold",
-					color: "white"
-				}}
-			>
-				{loginPageTitle}
-			</div>
+			<div className="Login__pageTitle">{loginPageTitle}</div>
 			<LoginForm />
+			<div className="Login__photoCredit">
+				<a href={AppImageProvider.Login.background.authorLink}>
+					{photoCredit}
+				</a>
+			</div>
 		</div>
 	);
 }

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Selectors } from "redux/selectors/userProfileSelectors";
 import { Routes } from "components/router/Routes";
+import { useTranslate } from "hooks/i18n";
 
 import { useStyles } from "./Header.styles";
 
@@ -18,6 +19,7 @@ import "./Header.scss";
 function Header(): JSX.Element {
 	// const urlPath = document.location.pathname;
 	const styles = useStyles();
+	const appTitle = useTranslate("app.bar.title");
 	// const data = useContext(MiniContext);
 	// const appStateService = useAppState();
 	const isAuthenticated = useSelector(Selectors.selectAuthenticated);
@@ -26,24 +28,24 @@ function Header(): JSX.Element {
 	);
 
 	return isAuthenticated ? (
-		<header style={styles.header}>
-			<div style={styles.appTitle}>
-				<a href={Routes.Home}>Practice React</a>
+		<header className="Header">
+			<div className="Header__appTitle">
+				<a href={Routes.Home}>{appTitle}</a>
 			</div>
-			<nav style={styles.navButtons}>
-				<span style={styles.navButtonUnit}>{userProfileName}</span>
-				<span style={styles.navButtonUnit}>
-					<button
+			<nav className="Header__navButtons">
+				<span className="Header__navButtonUnit">{userProfileName}</span>
+				<span className="Header__navButtonUnit">
+					{/* <button
 						onClick={() => {
 							window.location.href = Routes.Login;
 						}}
 					>
 						Login
-					</button>
+					</button> */}
 				</span>
-				<span style={styles.navButtonUnit}>
+				{/* <span className="Header__navButtonUnit">
 					<a href={Routes.Error404}>Error 404</a>
-				</span>
+				</span> */}
 			</nav>
 		</header>
 	) : null;

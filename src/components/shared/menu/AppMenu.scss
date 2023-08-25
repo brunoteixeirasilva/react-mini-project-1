@@ -1,0 +1,41 @@
+@use "static/sass/theme";
+
+.menu-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    gap: 20px;
+    padding: 20px;
+  
+    .tile {
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        transition: transform 0.2s ease;
+        height: 160px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: flex-start;
+  
+        h3 {
+            flex: 0 0 auto;
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        p {
+            flex: 1 1 auto;
+            font-size: 16px;
+            margin-top: 0;
+            text-overflow: clip;
+        }
+  
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+    }
+  }
+  

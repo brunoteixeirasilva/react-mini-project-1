@@ -6,9 +6,9 @@ import { Routes } from "./Routes";
 import { AppAuthentication } from "components/shared/layer/AppAuthentication";
 
 // Page Components
-import { Error404Page } from "components/page/Error404Page";
-import { HomePage } from "components/page/HomePage";
-import { LoginPage } from "components/page/LoginPage";
+import { Error404Page } from "components/page/error/Error404Page";
+import { HomePage } from "components/page/home/HomePage";
+import { LoginPage } from "components/page/login/LoginPage";
 
 /**
  * The Router object, which contains the routes and the elements to render.

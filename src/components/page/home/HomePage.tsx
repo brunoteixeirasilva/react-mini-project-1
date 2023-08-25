@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { useAppState } from "hooks/useAppState";
-
 import { Selectors } from "redux/selectors/userProfileSelectors";
-import PizzaList from "components/shared/list/pizza/PizzaList";
+
+import { AppMenu } from "components/shared/menu/AppMenu";
+// import PizzaList from "components/shared/list/pizza/PizzaList";
+
+import "./HomePage.scss";
+import { useTranslate } from "hooks/i18n";
 
 /**
  * Page Component: HomePage
@@ -19,8 +23,11 @@ function HomePage(): JSX.Element {
 	// const [name, setName] = useState("");
 	const service = useAppState();
 	// const name = service.user.getName(); // Subscriber pattern
-	const name = useSelector(Selectors.selectUserProfileName); // Selector pattern
+	const username = useSelector(Selectors.selectUserProfileName); // Selector pattern
 	// const name = useMemo(() => data?.profile?.name ?? "", [service]);
+
+	const userWelcomeText = useTranslate("page.home.welcome", { username });
+	const loadingText = useTranslate("global.loading");
 
 	const [externalData, setExternalData] = useState([]);
 
@@ -41,20 +48,12 @@ function HomePage(): JSX.Element {
 	}
 
 	return (
-		<div>
-			{!!name ? (
+		<div className="homepage">
+			{!!username ? (
 				<>
-					<h3>Pizza's - Página inicial. Hello, {name ?? "Anon"}.</h3>
-					<section>
-						<div>
-							<button onClick={callService}>
-								Consultar Sabores disponíveis
-							</button>
-						</div>
-						{/* Display a list of the data entries found by the external API service */}
-						{externalData ? (
-							<PizzaList pizzas={externalData} />
-						) : null}
+					<h3>{userWelcomeText}</h3>
+					<section className="homepage__directoryMenu">
+						<AppMenu />
 					</section>
 				</>
 			) : (
