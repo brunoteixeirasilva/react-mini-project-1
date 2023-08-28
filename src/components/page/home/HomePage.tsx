@@ -38,19 +38,6 @@ function HomePage(): JSX.Element {
 					<h3>{userWelcomeText}</h3>
 					<section className="homepage__directoryMenu">
 						<AppMenu />
-						<DataList
-							columns={[
-								{
-									field: "name",
-									label: "Name"
-								},
-								{
-									field: "price",
-									label: "Price"
-								}
-							]}
-							items={products}
-						/>
 					</section>
 				</>
 			) : (

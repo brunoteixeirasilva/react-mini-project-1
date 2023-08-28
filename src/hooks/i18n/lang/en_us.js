@@ -12,5 +12,7 @@ export const dictionary = {
 	"page.login.form.title": "Login",
 	"page.login.form.email": "Email",
 	"page.login.form.password": "Password",
-	"page.login.form.submit": "Sign In"
+	"page.login.form.submit": "Sign In",
+	"page.productsList.title": "Products",
+	"page.suppliersList.title": "Suppliers"
 };

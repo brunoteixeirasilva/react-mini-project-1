@@ -7,5 +7,7 @@ export const Routes = {
 	Error404: "/e404",
 	Login: "/login",
 	// TODO: Create pages below
-	Profile: "/profile"
+	Profile: "/profile",
+	ProductsList: "/products/list",
+	SuppliersList: "/suppliers/list"
 };

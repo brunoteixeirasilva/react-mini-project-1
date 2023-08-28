@@ -10,10 +10,34 @@ import { Error404Page } from "components/page/error/Error404Page";
 import { HomePage } from "components/page/home/HomePage";
 import { LoginPage } from "components/page/login/LoginPage";
 
+// List Page Components
+import { ProductsPage } from "components/page/products/ProductsPage";
+import { SuppliersPage } from "components/page/suppliers/SuppliersPage";
+
+const ListRoutes = [
+	{
+		path: Routes.ProductsList,
+		element: (
+			<AppAuthentication>
+				<ProductsPage />
+			</AppAuthentication>
+		)
+	},
+	{
+		path: Routes.SuppliersList,
+		element: (
+			<AppAuthentication>
+				<SuppliersPage />
+			</AppAuthentication>
+		)
+	}
+];
+
 /**
  * The Router object, which contains the routes and the elements to render.
  */
 export const RouterConfig = createBrowserRouter([
+	...ListRoutes,
 	{
 		path: Routes.Home,
 		element: (

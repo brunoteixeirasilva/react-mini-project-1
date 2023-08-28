@@ -1,9 +1,11 @@
+@use "static/sass/theme";
+
 // src/components/ProductList.scss
 .data-list {
-	padding: 20px;
+	// padding: calc(3 * theme.$app-box-padding);
 
 	.filters {
-		margin-bottom: 20px;
+		margin-bottom: calc(2 * theme.$app-box-margin);
 		display: flex;
 		align-items: center;
 		gap: 10px;

@@ -1,0 +1,16 @@
+@use "static/sass/theme";
+
+.listPage {
+	&__title {
+		font-size: 24px;
+		margin: calc(2 * theme.$app-box-margin) 0;
+		padding: 0 calc(2 * theme.$app-box-margin);
+		color: theme.$app-title-color;
+	}
+
+	&__listContainer {
+		margin: theme.$app-box-margin 0;
+		padding: calc(2 * theme.$app-box-margin) calc(2 * theme.$app-box-margin);
+		border-top: 1px solid #e0e0e0;
+	}
+}
