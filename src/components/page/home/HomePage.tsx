@@ -9,6 +9,8 @@ import { AppMenu } from "components/shared/menu/AppMenu";
 
 import "./HomePage.scss";
 import { useTranslate } from "hooks/i18n";
+import { DataList } from "components/shared/list/base/DataList";
+import { products } from "components/shared/list/base/_mock/products";
 
 /**
  * Page Component: HomePage
@@ -29,24 +31,6 @@ function HomePage(): JSX.Element {
 	const userWelcomeText = useTranslate("page.home.welcome", { username });
 	const loadingText = useTranslate("global.loading");
 
-	const [externalData, setExternalData] = useState([]);
-
-	async function callService() {
-		try {
-			const response = await service.Pizza.getPizzas();
-
-			setExternalData(response);
-
-			await service.zapier.zapier.post(JSON.stringify(response));
-
-			// console.log(response);
-
-			// alert("Pizza data returns successfully. See console.");
-		} catch (ex) {
-			console.error(`Oops, an error occurred: ${ex}`);
-		}
-	}
-
 	return (
 		<div className="homepage">
 			{!!username ? (
@@ -54,10 +38,23 @@ function HomePage(): JSX.Element {
 					<h3>{userWelcomeText}</h3>
 					<section className="homepage__directoryMenu">
 						<AppMenu />
+						<DataList
+							columns={[
+								{
+									field: "name",
+									label: "Name"
+								},
+								{
+									field: "price",
+									label: "Price"
+								}
+							]}
+							items={products}
+						/>
 					</section>
 				</>
 			) : (
-				"Loading"
+				loadingText
 			)}
 		</div>
 	);
